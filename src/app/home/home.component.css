@@ -1,0 +1,207 @@
+/* Genel Stil */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url('C:/otelRezervasyonUygulamasi/src/app/img/bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
+
+/* Header (Üst Menü) */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 50px;
+  background-color: #ffffff5b; /* Beyaz transparan */
+  backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
+  border-bottom: 2px solid #ccc;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  position: sticky; /* Sabit üst menü */
+  top: 0;
+  z-index: 10;
+  max-width: 1000px;
+  margin: 0px auto;
+  margin-top: 20px;
+}
+
+/* Logo */
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Menü */
+nav ul {
+  display: flex; /* Desktop görünümde menü gözükecek */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+  align-items: center;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #fff;
+  color: black;
+}
+
+/* Mobil Menü İkonu (Hamburger) */
+.mobile-menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+.mobile-menu-icon span {
+  font-size: 30px;
+  color: #000;
+}
+
+/* Responsive Tasarım için - Telefon Ekranları */
+@media (max-width: 768px) {
+  nav ul {
+      display: none; /* Yalnızca mobil ekranlarda menüyü gizle */
+      flex-direction: column;
+      background-color: rgba(255, 255, 255, 0.9); /* Beyaz transparan */
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding: 10px 0;
+  }
+
+  nav ul.show-menu {
+      display: flex; /* Mobil menü aktif olduğunda görünür */
+  }
+
+  nav ul li a {
+      padding: 15px;
+      text-align: center;
+      width: 100%;
+  }
+
+  /* Hamburger Menü Simgesi Görünür Yapılır */
+  .mobile-menu-icon {
+      display: block;
+  }
+}
+
+
+
+
+
+/* Ana Bölüm - Arama ve Oteller */
+section {
+  margin: 20px auto;
+  padding: 50px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  max-width: 800px;
+  background-color: #ffffff5b; /* Beyaz transparan */
+  backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
+  padding: 30px;
+  border-radius: 20px;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.mat-form-field {
+  margin: 10px 0; /* Alanlar arası boşluk */
+}
+
+.mat-input-element {
+  font-weight: normal; /* Yazı kalınlığını normal yapabilirsiniz */
+  padding: 10px; /* Gerekirse burayı ayarlayın */
+}
+
+/* Otel Arama Kartı */
+.otel-ara {
+  background-color: #ffffff5b; /* Beyaz transparan */
+  backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
+  padding: 30px;
+  border-radius: 20px;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+  max-width: 700px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+/* Girdi Alanları */
+.otel-ara input {
+  width: 45%;
+  margin: 10px 1%;
+  padding: 10px;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  background-color: #ffffff5b; /* Beyaz transparan */
+  backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.otel-ara .form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.otel-ara .form-row input {
+  width: 31%; /* 3 input'u aynı hizada olacak şekilde */
+}
+
+/* Alt satırdaki tek girdi */
+.otel-ara .full-width {
+  width: 100%;
+}
+
+/* Filtre Butonu */
+.otel-ara button {
+  width: 50%;
+  background-color: #ffffff5b; /* Beyaz transparan */
+  backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
+  color: #000;
+  padding: 12px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.otel-ara button:hover {
+  background-color: #ffffff; /* Beyaz transparan */
+}
+
+/* Ekran Boyutuna Göre Düzenleme */
+@media (max-width: 768px) {
+  header {
+      flex-direction: column;
+  }
+
+  .otel-ara input, .otel-ara button {
+      width: 100%;
+  }
+
+  .otel-ara .form-row input {
+      width: 100%;
+      margin-bottom: 10px;
+  }
+}

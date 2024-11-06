@@ -1,0 +1,38 @@
+
+<body>
+  <div>
+    <header>
+      <h1>LOGO</h1>
+      <nav>
+        <ul id="menu" class="menu"> <!-- Menüyü hedeflemek için id eklendi -->
+          <li *ngIf="!isLoggedIn()"><a href="">Ana Sayfa</a></li>
+          <li *ngIf="!isLoggedIn()"><a href="/login">Giriş Yap</a></li>
+          <li *ngIf="!isLoggedIn()"><a href="/register">Kayıt Ol</a></li>
+          <li *ngIf="authService.isLoggedIn()"><a (click)="logout()">Çıkış Yap</a></li>
+          <li *ngIf="authService.isLoggedIn()"><a href="/profile">Profil</a></li>
+        </ul>
+        <div class="mobile-menu-icon" (click)="toggleMenu()"> <!-- tıklama olayı eklendi -->
+          <span>&#9776;</span> <!-- Hamburger Menü Simgesi -->
+        </div>
+      </nav>
+    </header>
+  
+    <section class="otel-ara">
+      <h2>Otel Ara</h2>
+      <div class="form-row">
+        <input type="text" placeholder="Şehir Ara">
+        <input type="text" placeholder="Tarih">
+        <input type="text" placeholder="Kişi Sayısı">
+      </div>
+      <input type="text" class="full-width" placeholder="Yıldız Sayısı">
+      <button>Filtrele</button>
+    </section>
+  
+    <section class="oteller">
+      <h2>Oteller</h2>
+      <!-- Oteller Listesi -->
+    </section>
+  
+    
+  </div>
+</body>

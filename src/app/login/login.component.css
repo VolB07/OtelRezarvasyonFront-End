@@ -1,0 +1,171 @@
+/* Genel stil */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+/* Header (Üst Menü) */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 50px;
+  background-color: #fff; /* Beyaz transparan */
+  backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
+  border-bottom: 2px solid #ccc;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  position: sticky; /* Sabit üst menü */
+  top: 0;
+  z-index: 10;
+  max-width: 1000px;
+  margin: 0px auto;
+  margin-top: 20px;
+}
+
+/* Logo */
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Menü */
+nav ul {
+  display: flex; /* Desktop görünümde menü gözükecek */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 20px;
+  align-items: center;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #d0d0d0;
+  color: black;
+}
+
+/* Mobil Menü İkonu (Hamburger) */
+.mobile-menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+.mobile-menu-icon span {
+  font-size: 30px;
+  color: #000;
+}
+
+/* Responsive Tasarım için - Telefon Ekranları */
+@media (max-width: 768px) {
+  nav ul {
+      display: none; /* Yalnızca mobil ekranlarda menüyü gizle */
+      flex-direction: column;
+      background-color: rgba(255, 255, 255, 0.9); /* Beyaz transparan */
+      width: 100%;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding: 10px 0;
+  }
+
+  nav ul.show-menu {
+      display: flex; /* Mobil menü aktif olduğunda görünür */
+  }
+
+  nav ul li a {
+      padding: 15px;
+      text-align: center;
+      width: 100%;
+  }
+
+  /* Hamburger Menü Simgesi Görünür Yapılır */
+  .mobile-menu-icon {
+      display: block;
+  }
+}
+
+/* Ana container */
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+  border: 2px solid #e0e0e0;
+  text-align: center;
+}
+
+/* Başlık */
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  
+}
+
+/* Form yapısı */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Giriş alanları */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #f4f4f4;
+}
+
+/* Giriş yap butonu */
+button {
+  margin: 10px 0;
+  width: 100%;
+  padding: 12px;
+  background-color: #e0e0e0;
+  color: black;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #d0d0d0;
+}
+
+/* Alt metin ve bağlantı */
+p {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+p a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+}

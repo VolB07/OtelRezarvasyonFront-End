@@ -1,0 +1,21 @@
+<div class="admin-panel">
+  <div class="sidebar">
+    <div class="profile-icon">
+      <img src="/src/app/img/logo.png" alt="yok">
+    </div>
+    <div class="menu-item" (click)="toggleHotelForm()">
+      Otel ekle
+    </div>
+    <div class="menu-item" (click)="toggleEditHotelForm()">
+      Otel düzenle
+    </div>
+    <div class="menu-item" (click)="toggleRoomManagementForm()">
+      Oda Ekle
+    </div>
+  </div>
+  <div class="content-area">
+    <app-hotel-form *ngIf="isHotelFormVisible"></app-hotel-form>
+    <app-edit-hotel *ngIf="isEditHotelFormVisible"></app-edit-hotel>
+    <app-room-management-form *ngIf="isRoomManagementFormVisible"></app-room-management-form> <!-- Oda yönetim formu -->
+  </div>
+</div>

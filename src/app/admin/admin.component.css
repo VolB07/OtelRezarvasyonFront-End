@@ -1,0 +1,71 @@
+.admin-panel {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #d3d3d3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 95vh; /* Yüksekliği ayarla */
+  position: relative; /* İçindeki elemanların konumlandırılması için */
+}
+
+.profile-icon {
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+/* Otel ekle butonu için stil */
+.menu-item {
+  background-color: #b3b3b3;
+  color: black;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+  user-select: none; /* Yazıyı seçilemez yap */
+  position: relative; /* Çizgi için */
+}
+
+.menu-item:hover {
+  background-color: #a3a3a3; /* Hover efekti */
+}
+
+/* Üst ve alt çizgiyi eklemek için */
+.menu-item::before,
+.menu-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px; /* Çizginin kalınlığı */
+  background-color: #888; /* Çizgi rengi */
+}
+
+.menu-item::before {
+  top: 0; /* Üst çizgi */
+}
+
+.menu-item::after {
+  bottom: 0; /* Alt çizgi */
+}
+
+.content-area {
+  margin-left: 20px; /* Sidebar ile içerik alanı arasındaki boşluk */
+  padding: 20px;
+  flex-grow: 1; /* İçerik alanının genişlemesini sağlar */
+}

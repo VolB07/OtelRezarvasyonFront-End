@@ -1,0 +1,66 @@
+<form [formGroup]="hotelForm" (ngSubmit)="onSubmit()" class="hotel-form">
+  <h2>Otel Ekle</h2>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="name">Otel Adı:</label>
+      <input id="name" formControlName="name" required>
+      <div *ngIf="hotelForm.get('name')?.invalid && hotelForm.get('name')?.touched" class="error">
+        Otel adı gereklidir.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Telefon:</label>
+      <input id="phone" formControlName="phone" required>
+      <div *ngIf="hotelForm.get('phone')?.invalid && hotelForm.get('phone')?.touched" class="error">
+        Geçerli bir telefon numarası girin.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="star_rating">Yıldız Puanı:</label>
+      <select id="star_rating" formControlName="star_rating" required>
+        <option value="" disabled selected>Seçiniz</option>
+        <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">{{ star }}</option>
+      </select>
+      <div *ngIf="hotelForm.get('star_rating')?.invalid && hotelForm.get('star_rating')?.touched" class="error">
+        Yıldız puanı 1 ile 5 arasında olmalıdır.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">E-posta:</label>
+      <input id="email" type="email" formControlName="email" required>
+      <div *ngIf="hotelForm.get('email')?.invalid && hotelForm.get('email')?.touched" class="error">
+        Geçerli bir e-posta adresi girin.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label for="image_url">Resim URL:</label>
+      <input id="image_url" formControlName="image_url">
+    </div>
+  
+    <div class="form-group">
+      <label for="address">Adres:</label>
+      <textarea id="address" formControlName="address" required></textarea>
+      <div *ngIf="hotelForm.get('address')?.invalid && hotelForm.get('address')?.touched" class="error">
+        Adres gereklidir.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Açıklama:</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+
+
+
+  <button type="submit" [disabled]="hotelForm.invalid">Otel Ekle</button>
+</form>

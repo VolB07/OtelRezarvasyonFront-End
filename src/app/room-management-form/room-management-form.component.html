@@ -1,0 +1,55 @@
+<form *ngIf="!isLoading" [formGroup]="roomForm" (ngSubmit)="onSubmit()" class="room-management-form">
+  <h2>Oda Ekle</h2>
+
+  <!-- Otel Seçimi -->
+  <div class="form-row">
+      <div class="form-group">
+          <label for="hotel">Otel Seçin:</label>
+          <select id="hotel" formControlName="hotel_id" required>
+              <option value="" disabled selected>Otel Seçin</option>
+              <option *ngFor="let hotel of hotels" [value]="hotel.id">{{ hotel.name }}</option>
+          </select>
+          <div *ngIf="roomForm.get('hotel_id')?.invalid && roomForm.get('hotel_id')?.touched" class="error">
+              Bir otel seçmeniz gereklidir.
+          </div>
+      </div>
+      
+      <div class="form-group">
+          <label for="room_type">Oda Tipi Seçin:</label>
+          <select id="room_type" formControlName="room_type_id" required>
+              <option value="" disabled selected>Oda Tipi Seçin</option>
+              <option *ngFor="let type of roomTypes" [value]="type.id">{{ type.name }}</option>
+          </select>
+          <div *ngIf="roomForm.get('room_type_id')?.invalid && roomForm.get('room_type_id')?.touched" class="error">
+              Bir oda tipi seçmeniz gereklidir.
+          </div>
+      </div>
+  </div>
+
+  <!-- Fiyat Girişi -->
+  <div class="form-row">
+      <div class="form-group">
+          <label for="base_price">Fiyat (₺):</label>
+          <input id="base_price" type="number" formControlName="base_price" required>
+          <div *ngIf="roomForm.get('base_price')?.invalid && roomForm.get('base_price')?.touched" class="error">
+              Geçerli bir fiyat girin.
+          </div>
+      </div>
+      
+      <div class="form-group">
+          <label for="status">Durum:</label>
+          <select id="status" formControlName="status" required>
+              <option value="" disabled selected>Durum Seçin</option>
+              <option value="available">Müsait</option>
+              <option value="occupied">Dolu</option>
+              <option value="maintenance">Bakımda</option>
+          </select>
+          <div *ngIf="roomForm.get('status')?.invalid && roomForm.get('status')?.touched" class="error">
+              Bir durum seçmeniz gereklidir.
+          </div>
+      </div>
+  </div>
+
+  <!-- Ekleme Butonu -->
+  <button type="submit" [disabled]="roomForm.invalid">Oda Ekle</button>
+</form>

@@ -1,0 +1,23 @@
+
+<header>
+  <h1>LOGO</h1>
+  <nav>
+    <ul id="menu" class="menu"> <!-- Menüyü hedeflemek için id eklendi -->
+      <li><a href="">Ana Sayfa</a></li>
+      <li><a href="/login">Giriş Yap</a></li>
+      <li><a href="/register">Kayıt Ol</a></li>
+    </ul>
+    <div class="mobile-menu-icon" (click)="toggleMenu()"> <!-- tıklama olayı eklendi -->
+      <span>&#9776;</span> <!-- Hamburger Menü Simgesi -->
+    </div>
+  </nav>
+</header>
+<div class="login-container">
+  <h2>Giriş Yap</h2>
+  <form [formGroup]="loginForm">
+    <input type="email" placeholder="E-posta" formControlName="email" required>
+    <input type="password" placeholder="Şifre" formControlName="password" required>
+    <button (click)="login()">Giriş Yap</button>
+</form>
+  <p>Hesabın Yoksa: <a href="/register">Kaydol</a></p>
+</div>

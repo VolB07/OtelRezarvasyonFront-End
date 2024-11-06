@@ -1,0 +1,35 @@
+
+
+
+<header>
+  <h1>LOGO</h1>
+  <nav>
+    <ul id="menu" class="menu"> <!-- Menüyü hedeflemek için id eklendi -->
+      <li><a href="">Ana Sayfa</a></li>
+      <li><a href="/login">Giriş Yap</a></li>
+      <li><a href="/register">Kayıt Ol</a></li>
+    </ul>
+    <div class="mobile-menu-icon" (click)="toggleMenu()"> <!-- tıklama olayı eklendi -->
+      <span>&#9776;</span> <!-- Hamburger Menü Simgesi -->
+    </div>
+  </nav>
+</header>
+<div class="register-container">
+  <h2>Kayıt Ol</h2>
+  <form [formGroup]="users" >
+    <input type="text" placeholder="ad-soyad" id= "name" formControlName="name" data required>
+    <input type="age" placeholder="yaş" id= "age" formControlName="age" required>
+    <input type="tel" placeholder="telefon" id= "phone" formControlName="phone" required>
+    <input type="email" placeholder="e-posta" id= "email" formControlName="email" required>
+    <select formControlName="gender" required>
+      <option value="" disabled selected>cinsiyet seç</option>
+      <option value="male" >Erkek</option>
+      <option value="female">Kadın</option>
+      <option value="other" >Diğer</option>
+    </select>
+    <input type="password" placeholder="şifre" id= "password" formControlName="password" required>
+    <button (click)="register()">Kaydol</button>
+
+  </form>
+  <p>Hesabın Varsa: <a href="/login">Giriş Yap</a></p>  
+</div>

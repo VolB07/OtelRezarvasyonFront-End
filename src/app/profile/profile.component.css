@@ -1,0 +1,90 @@
+.profile-container {
+    display: flex;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.sidebar {
+    width: 200px;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.back-link {
+    display: block;
+    color: #0073e6;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.menu {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu li {
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 15px;
+}
+
+.logout-link {
+    display: block;
+    color: #0073e6;
+    text-decoration: none;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 40px;
+}
+
+.content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.content h2 {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.save-button {
+    background-color: #e0f3ff;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: not-allowed;
+}
+
+.delete-account-link {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #0073e6;
+    text-decoration: none;
+}
