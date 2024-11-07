@@ -1,38 +1,47 @@
-
 <body>
   <div>
     <header>
       <h1>LOGO</h1>
       <nav>
-        <ul id="menu" class="menu"> <!-- Menüyü hedeflemek için id eklendi -->
+        <ul id="menu" class="menu">
           <li *ngIf="!isLoggedIn()"><a href="">Ana Sayfa</a></li>
           <li *ngIf="!isLoggedIn()"><a href="/login">Giriş Yap</a></li>
           <li *ngIf="!isLoggedIn()"><a href="/register">Kayıt Ol</a></li>
           <li *ngIf="authService.isLoggedIn()"><a (click)="logout()">Çıkış Yap</a></li>
           <li *ngIf="authService.isLoggedIn()"><a href="/profile">Profil</a></li>
         </ul>
-        <div class="mobile-menu-icon" (click)="toggleMenu()"> <!-- tıklama olayı eklendi -->
+        <div class="mobile-menu-icon" (click)="toggleMenu()">
           <span>&#9776;</span> <!-- Hamburger Menü Simgesi -->
         </div>
       </nav>
     </header>
-  
+
     <section class="otel-ara">
       <h2>Otel Ara</h2>
       <div class="form-row">
-        <input type="text" placeholder="Şehir Ara">
-        <input type="text" placeholder="Tarih">
-        <input type="text" placeholder="Kişi Sayısı">
+        <input type="text" [(ngModel)]="filterCity" placeholder="Şehir Ara">
       </div>
-      <input type="text" class="full-width" placeholder="Yıldız Sayısı">
-      <button>Filtrele</button>
+      <div class="form-row">
+        <input type="number" [(ngModel)]="filterStars" min="1" max="5" placeholder="Yıldız Sayısı">
+      </div>
+      <button >Filtrele</button>
     </section>
-  
+
     <section class="oteller">
       <h2>Oteller</h2>
-      <!-- Oteller Listesi -->
+      <div class="hotel-list">
+        <div *ngFor="let hotel of filteredHotels" class="hotel-card">
+          <img [src]="hotel.image_url" alt="{{ hotel.name }}" class="hotel-image" />
+          <div class="hotel-details">
+            <h3 class="hotel-name">{{ hotel.name }}</h3>
+            <p class="hotel-address">{{ hotel.address }}</p>
+            <div class="hotel-rating">
+              <span *ngFor="let star of [].constructor(hotel.star_rating); let i = index" class="star">&#9733;</span>
+              <span *ngFor="let star of [].constructor(5 - hotel.star_rating); let i = index" class="star empty-star">&#9734;</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-  
-    
   </div>
 </body>
