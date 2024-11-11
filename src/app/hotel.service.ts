@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class HotelService {
   private apiUrl = 'http://localhost:5179/api/Hotels';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   addHotel(hotelData: any): Observable<any> {
     return this.http.post(this.apiUrl, hotelData);
@@ -27,14 +27,14 @@ export class HotelService {
   }
 
   // Otel filtreleme isteği
-  filterHotels(filters: { city?: string; stars?: number | null }): Observable<any[]> {
-    let params = new HttpParams();
-    if (filters.city) {
-      params = params.set('city', filters.city);
-    }
-    if (filters.stars !== undefined && filters.stars !== null) {
-      params = params.set('stars', filters.stars.toString());
-    }
-    return this.http.get<any[]>(`${this.apiUrl}/filter`, { params });
+  // hotel.service.ts
+  filterHotels(filter: { address?: string; star_rating?: number | null }): Observable<any[]> {
+    return this.http.post<any[]>('http://localhost:5179/api/Hotels/filter', filter);
   }
+
+  // Oteli ID'ye göre getiren fonksiyon
+  getHotelById(hotelId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${hotelId}`);
+  }
+
 }

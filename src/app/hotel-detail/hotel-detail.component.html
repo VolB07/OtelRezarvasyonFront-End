@@ -1,0 +1,26 @@
+<div class="hotel-detail-container">
+  <div class="hotel-header">
+    <h2>{{ hotel?.name }}</h2>
+    <p>{{ hotel?.address }}</p>
+    <p>{{ hotel?.phone }}</p>
+    <p>{{ hotel?.email }}</p>
+    <div class="hotel-rating">
+      <span *ngFor="let star of [].constructor(hotel?.star_rating); let i = index" class="star">&#9733;</span>
+      <span *ngFor="let star of [].constructor(5 - hotel?.star_rating); let i = index" class="empty-star">&#9734;</span>
+    </div>
+  </div>
+
+  <div class="hotel-info">
+    <img [src]="hotel?.image_url" alt="{{ hotel?.name }}" class="hotel-image">
+    <p>{{ hotel?.description }}</p>
+  </div>
+
+  <h3>Müsait Odalar</h3>
+  <div class="room-list">
+    <div *ngFor="let room of rooms" class="room-card">
+      <h4>{{ room.type }}</h4>
+      <p>Fiyat: {{ room.base_price  }}</p>
+      <button class="book-button">Rezerve Et</button>
+    </div>
+  </div>
+</div>

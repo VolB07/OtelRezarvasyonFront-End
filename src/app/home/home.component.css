@@ -1,5 +1,5 @@
 /* Genel Stil */
-body {
+.body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -7,7 +7,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed
 }
 
 
@@ -29,7 +29,7 @@ header {
   z-index: 10;
   max-width: 1000px;
   margin: 0px auto;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 /* Logo */
@@ -108,7 +108,7 @@ nav ul li a:hover {
 
 /* Ana Bölüm - Arama ve Oteller */
 section {
-  margin: 20px auto;
+  margin: 30px auto;
   padding: 50px;
   background-color: #f4f4f4;
   border-radius: 10px;
@@ -134,14 +134,15 @@ section {
 .otel-ara {
   background-color: #ffffff5b; /* Beyaz transparan */
   backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
-  padding: 30px;
+  padding: 5px 10px; /* İç boşluk azaltıldı */
   border-radius: 20px;
   border: 2px solid #e0e0e0;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
   max-width: 700px;
-  margin: 50px auto;
+  margin: 40px auto;
   text-align: center;
 }
+
 
 /* Girdi Alanları */
 .otel-ara input {
@@ -166,10 +167,7 @@ section {
   width: 31%; /* 3 input'u aynı hizada olacak şekilde */
 }
 
-/* Alt satırdaki tek girdi */
-.otel-ara .full-width {
-  width: 100%;
-}
+
 
 /* Filtre Butonu */
 .otel-ara button {
@@ -177,11 +175,11 @@ section {
   background-color: #ffffff5b; /* Beyaz transparan */
   backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
   color: #000;
-  padding: 12px;
-  margin-top: 20px;
+  padding: 10px;
+  margin: 10px 1%;
   border: none;
-  border-radius: 20px;
-  font-size: 18px;
+  border-radius: 10px;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
 }

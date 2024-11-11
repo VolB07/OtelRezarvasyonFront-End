@@ -67,4 +67,8 @@ export class HomeComponent {
       menu?.classList.remove('show-menu');
     }
   }
+
+  navigateToHotelDetail(hotelId: string): void {
+    this.router.navigate(['/hotel', hotelId]);
+  }
 }

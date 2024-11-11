@@ -1,4 +1,4 @@
-<body>
+<div class="body">
   <div>
     <header>
       <h1>LOGO</h1>
@@ -17,20 +17,17 @@
     </header>
 
     <section class="otel-ara">
-      <h2>Otel Ara</h2>
       <div class="form-row">
-        <input type="text" [(ngModel)]="filterCity" placeholder="Şehir Ara">
-      </div>
-      <div class="form-row">
+        <input type="text" [(ngModel)]="filterCity" placeholder="Konum">
         <input type="number" [(ngModel)]="filterStars" min="1" max="5" placeholder="Yıldız Sayısı">
+        <input type="text" placeholder="Oda Tipi"> <!-- Adjusted for room type -->
+        <button (click)="filterHotels()">Filtrele</button>
       </div>
-      <button >Filtrele</button>
     </section>
 
     <section class="oteller">
-      <h2>Oteller</h2>
       <div class="hotel-list">
-        <div *ngFor="let hotel of filteredHotels" class="hotel-card">
+        <div *ngFor="let hotel of filteredHotels" class="hotel-card" (click)="navigateToHotelDetail(hotel.id)">
           <img [src]="hotel.image_url" alt="{{ hotel.name }}" class="hotel-image" />
           <div class="hotel-details">
             <h3 class="hotel-name">{{ hotel.name }}</h3>
@@ -44,4 +41,4 @@
       </div>
     </section>
   </div>
-</body>
+</div>
