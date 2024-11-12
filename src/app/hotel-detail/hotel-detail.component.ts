@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HotelService } from '../hotel.service';
 import { RoomService } from '../room.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-hotel-detail',
@@ -18,7 +19,8 @@ export class HotelDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private hotelService: HotelService,
-    private roomService: RoomService
+    private roomService: RoomService,
+    public authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -39,5 +41,25 @@ export class HotelDetailComponent implements OnInit {
     this.roomService.getRoomsByHotelId(hotelId).subscribe((data) => {
       this.rooms = data;
     });
+  }
+
+  isMenuOpen: boolean = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+    const menu = document.getElementById('menu');
+    if (this.isMenuOpen) {
+      menu?.classList.add('show-menu');
+    } else {
+      menu?.classList.remove('show-menu');
+    }
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isAuthenticated(); 
+  }
+
+  logout() {
+    this.authService.clearToken(); 
   }
 }

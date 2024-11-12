@@ -1,26 +1,57 @@
+<header>
+  <h1>LOGO</h1>
+  <nav>
+    <ul id="menu" class="menu">
+      <li *ngIf="!isLoggedIn()"><a href="">Ana Sayfa</a></li>
+      <li *ngIf="!isLoggedIn()"><a href="/login">Giriş Yap</a></li>
+      <li *ngIf="!isLoggedIn()"><a href="/register">Kayıt Ol</a></li>
+      <li *ngIf="authService.isLoggedIn()"><a (click)="logout()">Çıkış Yap</a></li>
+      <li *ngIf="authService.isLoggedIn()"><a href="/profile">Profil</a></li>
+    </ul>
+    <div class="mobile-menu-icon" (click)="toggleMenu()">
+      <span>&#9776;</span> <!-- Hamburger Menü Simgesi -->
+    </div>
+  </nav>
+</header>
+
 <div class="hotel-detail-container">
-  <div class="hotel-header">
-    <h2>{{ hotel?.name }}</h2>
-    <p>{{ hotel?.address }}</p>
-    <p>{{ hotel?.phone }}</p>
-    <p>{{ hotel?.email }}</p>
-    <div class="hotel-rating">
-      <span *ngFor="let star of [].constructor(hotel?.star_rating); let i = index" class="star">&#9733;</span>
-      <span *ngFor="let star of [].constructor(5 - hotel?.star_rating); let i = index" class="empty-star">&#9734;</span>
+  <!-- Görsel Banner -->
+  <div class="hotel-banner">
+    <img [src]="hotel?.image_url" alt="{{ hotel?.name }}" class="hotel-image" />
+    <div class="overlay">
+      <div class="hotel-info">
+        <h1 class="hotel-title">{{ hotel?.name }}</h1>
+        <div class="hotel-meta">
+          <div class="hotel-contact">
+            <span>Telefon: {{ hotel?.phone }}</span>
+            <span>Email: {{ hotel?.email }}</span>
+            <span>Konum: {{ hotel?.address }}</span>
+          </div>
+        </div>
+        <div class="hotel-rating">
+          <span *ngFor="let star of [].constructor(hotel?.star_rating); let i = index" class="star">&#9733;</span>
+          <span *ngFor="let star of [].constructor(5 - hotel?.star_rating); let i = index" class="empty-star">&#9734;</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="hotel-info">
-    <img [src]="hotel?.image_url" alt="{{ hotel?.name }}" class="hotel-image">
-    <p>{{ hotel?.description }}</p>
-  </div>
+  <!-- Otel Açıklamaları ve Müsait Odalar -->
+  <div class="hotel-detail">
+    <div class="hotel-description">
+      <h2>Açıklama</h2>
+      <p>{{ hotel?.description }}</p>
+    </div>
 
-  <h3>Müsait Odalar</h3>
-  <div class="room-list">
-    <div *ngFor="let room of rooms" class="room-card">
-      <h4>{{ room.type }}</h4>
-      <p>Fiyat: {{ room.base_price  }}</p>
-      <button class="book-button">Rezerve Et</button>
+    <div class="room-list">
+      <h2>Müsait Odalar</h2>
+      <div class="room-card" *ngFor="let room of rooms">
+        <div class="room-info">
+          <h3>{{ room.type }}</h3>
+          <p>Fiyat: {{ room.base_price }}₺</p>
+          <button class="book-button">Rezerve Et</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
