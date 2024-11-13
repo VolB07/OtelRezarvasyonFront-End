@@ -1,12 +1,12 @@
 <header>
   <h1>LOGO</h1>
   <nav>
-    <ul id="menu" class="menu">
-      <li *ngIf="!isLoggedIn()"><a href="">Ana Sayfa</a></li>
+    <ul id="menu" class="menu" [class.show]="isMenuOpen">
+      <li *ngIf="!isLoggedIn()"><a href="/">Ana Sayfa</a></li>
       <li *ngIf="!isLoggedIn()"><a href="/login">Giriş Yap</a></li>
       <li *ngIf="!isLoggedIn()"><a href="/register">Kayıt Ol</a></li>
-      <li *ngIf="authService.isLoggedIn()"><a (click)="logout()">Çıkış Yap</a></li>
-      <li *ngIf="authService.isLoggedIn()"><a href="/profile">Profil</a></li>
+      <li *ngIf="isLoggedIn()"><a (click)="logout()">Çıkış Yap</a></li>
+      <li *ngIf="isLoggedIn()"><a href="/profile">Profil</a></li>
     </ul>
     <div class="mobile-menu-icon" (click)="toggleMenu()">
       <span>&#9776;</span> <!-- Hamburger Menü Simgesi -->
@@ -45,13 +45,20 @@
 
     <div class="room-list">
       <h2>Müsait Odalar</h2>
-      <div class="room-card" *ngFor="let room of rooms">
-        <div class="room-info">
-          <h3>{{ room.type }}</h3>
-          <p>Fiyat: {{ room.base_price }}₺</p>
-          <button class="book-button">Rezerve Et</button>
+      <ng-container *ngIf="rooms.length > 0; else noRooms">
+        <div class="room-card" *ngFor="let room of rooms">
+          <div class="room-info">
+            <!-- Oda tipi ismi ve resmi -->
+            <h3>{{ room.typeName }}</h3>
+            <img [src]="room.typeImage" alt="{{ room.typeName }}" class="room-image" />
+            <p>Fiyat: {{ room.base_price }}₺</p>
+            <button class="book-button">Rezerve Et</button>
+          </div>
         </div>
-      </div>
+      </ng-container>
+      <ng-template #noRooms>
+        <p>Müsait oda bulunamadı.</p>
+      </ng-template>
     </div>
   </div>
 </div>
