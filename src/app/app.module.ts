@@ -12,6 +12,7 @@ import {  CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import { RoomManagementFormComponent } from './room-management-form/room-management-form.component';
 import { RoomService } from './room.service';
+import { ReservationPaymentComponent } from './reservation-payment/reservation-payment.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RoomService } from './room.service';
     ReactiveFormsModule,
     HotelFormComponent,
     EditHotelComponent,
+    ReservationPaymentComponent
   ],
   providers: [provideHttpClient(),RoomService],
 // AppComponent'i burada kullanıyoruz

@@ -7,6 +7,8 @@ import { AdminComponent } from './admin/admin.component';
 import { NgModule } from '@angular/core';
 import { ProfileComponent } from './profile/profile.component';
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
+import { ReservationPaymentComponent } from './reservation-payment/reservation-payment.component';
+
 
 export const routes: Routes = [  
     { path: '', component: HomeComponent },
@@ -15,6 +17,8 @@ export const routes: Routes = [
     { path: 'admin', component: AdminComponent},
     { path: 'profile', component: ProfileComponent},
     { path: 'hotel/:id', component: HotelDetailComponent },
+    { path: 'reservation-payment/:hotelId/:roomId', component: ReservationPaymentComponent },
+    
 
 ];
 

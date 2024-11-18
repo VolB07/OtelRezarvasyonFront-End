@@ -37,4 +37,19 @@ export class RoomService {
   getRoomsByHotelId(hotelId: string) {
     return this.http.get<any[]>(`http://localhost:5179/api/Rooms?hotelId=${hotelId}`);
   }
+
+  // Oda ve otel ID'sine göre oda bilgilerini alıyoruz
+  getRoomByHotelAndRoomId(hotelId: number, roomId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/hotel/${hotelId}/room/${roomId}`);
+  }
+
+
+
+  getRoomTypeById(roomTypeId: number): Observable<any> {
+    return this.http.get(`http://localhost:5179/api/RoomTypes/${roomTypeId}`);
+  }
+  
+  
+  
+
 }

@@ -39,4 +39,19 @@ export class AuthService {
   isLoggedIn(): boolean {
     return this.isAuthenticated(); // Bu, isAuthenticated metodunu çağırır
   }
+
+  // Kullanıcı bilgilerini almak için metot
+  getUserInfo(): any {
+    if (typeof window !== 'undefined') { // Tarayıcıda olduğumuzu kontrol et
+      const user = localStorage.getItem('user');
+      return user ? JSON.parse(user) : null; // Eğer kullanıcı varsa döndür, yoksa null döndür
+    }
+    return null; // Tarayıcıda değilsek null döndür
+  }
+
+  // Kullanıcı ID'sini almak için metot
+  getUserId(): number | null {
+    const user = this.getUserInfo();
+    return user ? user.id : null; // Eğer kullanıcı varsa ID'sini döndür, yoksa null döndür
+  }
 }

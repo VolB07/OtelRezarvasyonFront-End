@@ -48,11 +48,10 @@
       <ng-container *ngIf="rooms.length > 0; else noRooms">
         <div class="room-card" *ngFor="let room of rooms">
           <div class="room-info">
-            <!-- Oda tipi ismi ve resmi -->
             <h3>{{ room.typeName }}</h3>
-            <img [src]="room.typeImage" alt="{{ room.typeName }}" class="room-image" />
+            <img [src]="room.typeImage" alt="{{ room.typeName }}" class="room-image">
             <p>Fiyat: {{ room.base_price }}₺</p>
-            <button class="book-button">Rezerve Et</button>
+            <button class="book-button" (click)="bookRoom(room.id)">Rezerve Et</button>
           </div>
         </div>
       </ng-container>
