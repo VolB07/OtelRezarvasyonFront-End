@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HotelService } from '../hotel.service';
 import { RoomService } from '../room.service';
 import { ReservationService } from '../reservations.service';
+import { UserService } from '../user.service';
+import { AuthService } from '../auth.service';  // AuthService'i import ettik
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -14,37 +16,47 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, FormsModule]
 })
 export class ReservationPaymentComponent implements OnInit {
-  hotelId: string = '';  
+  hotelId: string = '';
   roomId: string = '1';  // Default room ID
-  hotel: any = null;  
-  selectedRoom: any = null;  
-  checkInDate: string = '';  
-  checkOutDate: string = '';  
-  totalPrice: number = 0;  
+  hotel: any = null;
+  selectedRoom: any = null;
+  checkInDate: string = '';
+  checkOutDate: string = '';
+  totalPrice: number = 0;
   selectedHotel: any;
 
-  // Payment information (not saved in database)
-  cardNumber: string = ''; 
-  expiryDate: string = ''; 
-  cvv: string = ''; 
+  cardNumberPattern: string = '^[0-9]{4}(?:[ ]?[0-9]{4}){3}$';  // 1234 5678 1234 5678
+  expiryDatePattern: string = '^(0[1-9]|1[0-2])\/([0-9]{2})$'; // MM/YY
+  cvvPattern: string = '^[0-9]{3}$';  // 3 haneli sayılar
 
-  loggedInUserId: number = 1;  // Example logged in user ID (this should be fetched dynamically)
+  // Payment information (not saved in database)
+  cardNumber: string = '';
+  expiryDate: string = '';
+  cvv: string = '';
+
+  loggedInUserId: number = 1;  // Başlangıçta bir değer atanmıştı ancak artık dinamik olarak alacağız
 
   constructor(
-    private route: ActivatedRoute,  
+    private route: ActivatedRoute,
     private hotelService: HotelService,
     private roomService: RoomService,
     private reservationService: ReservationService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private authService: AuthService,  // AuthService bağımlılığı ekledik
+    private userService: UserService,
+  ) { }
 
   ngOnInit(): void {
-    this.hotelId = this.route.snapshot.paramMap.get('hotelId') || '';  
-    this.roomId = this.route.snapshot.paramMap.get('roomId') || '2';  
-    this.getHotelDetails(this.hotelId);  
+    this.hotelId = this.route.snapshot.paramMap.get('hotelId') || '';
+    this.roomId = this.route.snapshot.paramMap.get('roomId') || '2';
+    this.getHotelDetails(this.hotelId);
     this.getRoomDetails(this.hotelId);
+  
+    // Kullanıcı ID'sini AuthService'ten alıyoruz
+    this.loggedInUserId = this.authService.getUserId() ?? 1;  // Eğer kullanıcı ID'si yoksa 1 kullanılıyor (ancak bu durumda, dinamik olmalı)
   }
   
+
   // Fetch hotel details
   getHotelDetails(hotelId: string): void {
     if (!hotelId) return;
@@ -84,7 +96,7 @@ export class ReservationPaymentComponent implements OnInit {
       }
     });
   }
-  
+
   // Fetch room type name based on room type ID
   getRoomTypeName(roomTypeId: number): void {
     if (!roomTypeId) return;
@@ -108,7 +120,7 @@ export class ReservationPaymentComponent implements OnInit {
       const checkOut = new Date(this.checkOutDate);
 
       const diffTime = Math.abs(checkOut.getTime() - checkIn.getTime());
-      const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24)); 
+      const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24));
 
       this.totalPrice = this.selectedRoom.base_price * diffDays;
 
@@ -119,13 +131,14 @@ export class ReservationPaymentComponent implements OnInit {
     return this.totalPrice;  // Return the total price directly here
   }
 
-  // Create reservation after successful payment
   createReservation(): void {
+    debugger
     console.log('Selected Room:', this.selectedRoom);  // selectedRoom doğru gelmiş mi kontrol et
-    console.log('Logged In User ID:', this.loggedInUserId);  // loggedInUserId doğru gelmiş mi kontrol et
+    console.log('Logged In User ID:', this.loggedInUserId);  // ID doğru geliyor mu?
     console.log('Check-in Date:', this.checkInDate);  // Check-in tarihi doğru mu?
     console.log('Check-out Date:', this.checkOutDate);  // Check-out tarihi doğru mu?
-  
+
+
     if (!this.selectedRoom) {
       alert('Oda seçilmedi!');
       return;
@@ -138,18 +151,27 @@ export class ReservationPaymentComponent implements OnInit {
       alert('Lütfen giriş ve çıkış tarihlerini girin!');
       return;
     }
-  
+
+    // Tarihlerin sıralamasını kontrol et
+    const checkIn = new Date(this.checkInDate);
+    const checkOut = new Date(this.checkOutDate);
+
+    if (checkOut <= checkIn) {
+      alert('Çıkış tarihi, giriş tarihinden sonra olmalıdır!');
+      return;
+    }
+
     const reservation = {
       user_id: this.loggedInUserId,  // Giriş yapan kullanıcının ID'si
       room_id: this.selectedRoom.id,  // Seçilen odanın ID'si
-      check_in_date: this.checkInDate,  // Giriş tarihi
-      check_out_date: this.checkOutDate,  // Çıkış tarihi
+      check_in: new Date(this.checkInDate).toISOString(), // Giriş tarihini ISO formatına çevir
+      check_out: new Date(this.checkOutDate).toISOString(), // Çıkış tarihini ISO formatına çevir
       total_price: this.calculateTotalPrice()  // Toplam fiyat
     };
-  
+
     this.reservationService.createReservation(reservation).subscribe(
       (response) => {
-        console.log('Rezervasyon başarıyla oluşturuldu!', response);
+        alert('Rezervasyon başarılı, rezarvasyonlarım ekranına aktarılacaksınız!');
         this.router.navigate(['/rezervasyonlar']);
       },
       (error) => {
@@ -157,19 +179,48 @@ export class ReservationPaymentComponent implements OnInit {
       }
     );
   }
-  
-  
+  // Format Kart Numarası: 1234 5678 1234 5678
+  formatCardNumber(): void {
+    const value = this.cardNumber.replace(/\D/g, '');  // Sadece rakamları al
+    let formatted = '';
 
-  
+    for (let i = 0; i < value.length; i++) {
+      if (i % 4 === 0 && i > 0) {
+        formatted += ' ';
+      }
+      formatted += value[i];
+    }
+
+    this.cardNumber = formatted;
+  }
+
+  // Format Son Kullanma Tarihi: MM/YY
+  formatExpiryDate(): void {
+    let value = this.expiryDate.replace(/\D/g, '');  // Sadece rakamları al
+    if (value.length > 2) {
+      value = value.substring(0, 2) + '/' + value.substring(2, 4);
+    }
+
+    this.expiryDate = value;
+  }
+
+   // Kart Numarası Validation
+   isCardNumberValid(): boolean {
+    const regex = new RegExp(this.cardNumberPattern);
+    return regex.test(this.cardNumber);
+  }
+
+  // Son Kullanma Tarihi Validation
+  isExpiryDateValid(): boolean {
+    const regex = new RegExp(this.expiryDatePattern);
+    return regex.test(this.expiryDate);
+  }
+
+  // CVV Validation
+  isCvvValid(): boolean {
+    const regex = new RegExp(this.cvvPattern);
+    return regex.test(this.cvv);
+  }
 }
 
-// Reservation interface (update if necessary)
-export interface Reservation {
-  id?: number;
-  userId: number;
-  roomId: number;
-  checkIn: string;
-  checkOut: string;
-  totalPrice: number;
-  status: 'pending' | 'confirmed' | 'cancelled';
-}
+

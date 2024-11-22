@@ -2,7 +2,7 @@
   <h1>LOGO</h1>
   <nav>
     <ul id="menu" class="menu" [class.show]="isMenuOpen">
-      <li *ngIf="!isLoggedIn()"><a href="/">Ana Sayfa</a></li>
+      <li *ngIf="isLoggedIn()"><a href="/">Ana Sayfa</a></li>
       <li *ngIf="!isLoggedIn()"><a href="/login">Giriş Yap</a></li>
       <li *ngIf="!isLoggedIn()"><a href="/register">Kayıt Ol</a></li>
       <li *ngIf="isLoggedIn()"><a (click)="logout()">Çıkış Yap</a></li>

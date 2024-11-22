@@ -4,12 +4,12 @@
   <!-- Rezervasyon Bilgileri -->
   <section class="reservation-section">
     <h3>Rezervasyon Bilgileri</h3>
-    
+
     <div class="form-group">
       <label for="hotelName">Otel Adı:</label>
       <span id="hotelName">{{ hotel?.name || 'Yükleniyor...' }}</span>
     </div>
-    
+
     <div class="form-group">
       <label for="roomType">Oda Tipi:</label>
       <span id="roomType">{{ selectedRoom?.roomTypeName || 'Yükleniyor...' }}</span>
@@ -19,12 +19,14 @@
     <div class="date-inputs">
       <div class="form-group">
         <label for="checkInDate">Giriş Tarihi:</label>
-        <input id="checkInDate" type="date" [(ngModel)]="checkInDate" class="form-control" (change)="calculateTotalPrice()" required>
+        <input id="checkInDate" type="date" [(ngModel)]="checkInDate" class="form-control"
+          (change)="calculateTotalPrice()" required>
       </div>
 
       <div class="form-group">
         <label for="checkOutDate">Çıkış Tarihi:</label>
-        <input id="checkOutDate" type="date" [(ngModel)]="checkOutDate" class="form-control" (change)="calculateTotalPrice()" required>
+        <input id="checkOutDate" type="date" [(ngModel)]="checkOutDate" class="form-control"
+          (change)="calculateTotalPrice()" required>
       </div>
     </div>
 
@@ -38,28 +40,41 @@
   <section class="payment-section">
     <h3>Ödeme Bilgileri</h3>
 
+    <!-- Kart Numarası -->
     <div class="form-group">
       <label for="cardNumber">Kart Numarası:</label>
-      <input id="cardNumber" type="text" [(ngModel)]="cardNumber" class="form-control" maxlength="16" placeholder="Kart numarası" required>
+      <input id="cardNumber" type="text" [(ngModel)]="cardNumber" class="form-control" maxlength="19"
+        placeholder="Kart numarası" required [pattern]="cardNumberPattern" (input)="formatCardNumber()">
+      <div *ngIf="cardNumber && !isCardNumberValid()" class="error-message">
+        Lütfen geçerli bir kart numarası girin.
+      </div>
     </div>
 
+    <!-- Son Kullanma Tarihi -->
     <div class="form-group">
       <label for="expiryDate">Son Kullanma Tarihi:</label>
-      <input id="expiryDate" type="text" [(ngModel)]="expiryDate" class="form-control" placeholder="MM/YY" maxlength="5" required>
+      <input id="expiryDate" type="text" [(ngModel)]="expiryDate" class="form-control" placeholder="MM/YY" maxlength="5"
+        required [pattern]="expiryDatePattern" (input)="formatExpiryDate()">
+      <div *ngIf="expiryDate && !isExpiryDateValid()" class="error-message">
+        Lütfen geçerli bir son kullanma tarihi girin (MM/YY).
+      </div>
     </div>
 
+    <!-- CVV -->
     <div class="form-group">
       <label for="cvv">CVV:</label>
-      <input id="cvv" type="text" [(ngModel)]="cvv" class="form-control" maxlength="3" placeholder="CVV" required>
+      <input id="cvv" type="text" [(ngModel)]="cvv" class="form-control" maxlength="3" placeholder="CVV" required
+        [pattern]="cvvPattern">
+      <div *ngIf="cvv && !isCvvValid()" class="error-message">
+        Lütfen geçerli bir CVV girin.
+      </div>
     </div>
-  </section>
 
-  <!-- İşlem Onay Butonu -->
-  <div class="form-group">
-    <button class="submit-button btn btn-primary" (click)="createReservation()" [disabled]="!checkInDate || !checkOutDate || !cardNumber || !expiryDate || !cvv">
-      Rezervasyon ve Ödeme Yap
-    </button>
-  </div>
 
-</div>
-  
+    <!-- İşlem Onay Butonu -->
+    <div class="form-group">
+      <button class="submit-button btn btn-primary" (click)="createReservation()"
+        [disabled]="!checkInDate || !checkOutDate || !cardNumber || !expiryDate || !cvv">
+        Rezervasyon ve Ödeme Yap
+      </button>
+    </div>

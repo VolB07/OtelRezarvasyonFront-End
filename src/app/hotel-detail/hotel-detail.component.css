@@ -125,10 +125,6 @@ nav ul li a:hover {
 /* Otel Bilgileri Kısmı */
 .hotel-info {
   padding: 30px;
-  background-color: #ffffff5b; /* Beyaz transparan */
-  backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
-  border-bottom: 2px solid #ccc;
-  border: 2px solid #e0e0e0;
   max-width: 800px;
   border-radius: 10px;
   display: block;

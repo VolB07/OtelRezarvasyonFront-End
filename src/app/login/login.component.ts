@@ -15,6 +15,15 @@ export class LoginComponent {
   loginForm: FormGroup;
   isMenuOpen: boolean = false;
 
+  ngOnInit() {
+  const token = this.authService.getToken();
+  if (token) {
+    console.log('Yükleme sırasında alınan token:', token);
+  } else {
+    console.log('Token bulunamadı');
+  }
+}
+
   constructor(
     private http: HttpClient, 
     private formBuilder: FormBuilder,
@@ -30,19 +39,37 @@ export class LoginComponent {
   login() {
     if (this.loginForm.valid) {
       this.http.post('http://localhost:5179/api/Users/login', this.loginForm.value)
-        .subscribe(response => {
-          console.log('Giriş başarılı:', response);
-          alert('Giriş başarılı!');
-          localStorage.setItem('token', 'your-token'); // Token depolama
-          this.router.navigate(['/']); // Ana sayfaya yönlendirme
-        }, error => {
-          console.log('Giriş hatası:', error);
-          alert('Giriş sırasında bir hata oluştu. Lütfen kontrol edin.');
+        .subscribe({
+          next: (response: any) => {
+            console.log('Giriş başarılı:', response);
+            if (response && response.token) {
+              const token = response.token;
+              localStorage.setItem('token', token);
+  
+              // Kullanıcı ID'sini kaydet
+              if (response.userId) {
+                localStorage.setItem('userId', response.userId);
+                console.log('Kullanıcı ID kaydedildi:', response.userId);
+              }
+  
+              this.router.navigate(['/']);
+            } else {
+              alert('Token alınamadı. Lütfen tekrar deneyin.');
+            }
+          },
+          error: (error) => {
+            console.log('Giriş hatası:', error);
+            alert('Giriş sırasında bir hata oluştu. Lütfen kontrol edin.');
+          }
         });
     } else {
       alert('Lütfen tüm alanları doldurun.');
     }
   }
+  
+  
+
+
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
