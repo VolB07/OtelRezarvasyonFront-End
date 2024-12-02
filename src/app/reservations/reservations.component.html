@@ -1,18 +1,27 @@
 <div class="reservations-container">
     <div class="sidebar">
-      <a href="" class="back-link">Ana Sayfa</a>
-      <ul class="menu">
-        <li ><a class="links" href="/profile">Hesabım</a></li>
-        <li><a class="links" href="/reservations">Rezarvasyonlarım</a></li>
-        <li>Yardım ve destek</li>
-      </ul>
+        <a href="" class="back-link">Ana Sayfa</a>
+        <ul class="menu">
+            <li><a class="links" href="/profile">Hesabım</a></li>
+            <li><a class="links" href="/reservations">Rezarvasyonlarım</a></li>
+            <li>Yardım ve destek</li>
+        </ul>
     </div>
-  
+
     <div class="content">
-      <h2>Rezervasyonlarım</h2>
-  
+        <h2>Rezervasyonlarım</h2>
+        <div *ngIf="reservations.length === 0">
+            Henüz rezervasyonunuz bulunmuyor.
+        </div>
 
-
+        <div *ngFor="let reservation of reservations" class="reservation-card"
+            [ngClass]="{'expired': isExpired(reservation.checkOutDate)}">
+            <h3>{{ reservation.hotelName }}</h3>
+            <p>Giriş Tarihi: {{ reservation.checkInDate | date:'dd/MM/yyyy' }}</p>
+            <p>Çıkış Tarihi: {{ reservation.checkOutDate | date:'dd/MM/yyyy' }}</p>
+            <p>Toplam Fiyat: {{ reservation.totalPrice | currency:'TRY' }}</p>
+            <p>Oda Tipi: {{ reservation.roomTypeName }}</p>
+        </div>
     </div>
-  </div>
-  
+
+</div>

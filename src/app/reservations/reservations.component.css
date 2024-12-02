@@ -4,6 +4,27 @@
     color: #333;
 }
 
+.reservation-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .reservation-card h3 {
+    margin: 0 0 10px;
+    color: #0073e6;
+  }
+
+  .reservation-card.expired {
+    opacity: 0.5; /* Soluk görünmesi için opaklık azaltma */
+    background-color: #f0f0f0; /* Soluk gri arka plan rengi */
+    color: #aaa; /* Soluk gri metin rengi */
+  }
+  
+  
+
 .sidebar {
     width: 200px;
     padding: 20px;
