@@ -10,7 +10,7 @@ export class UserService {
 
   private apiUrl = 'http://localhost:5179/api/Users'; // ASP.NET Core API URL
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient) { }
 
   getUsers(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
@@ -20,10 +20,9 @@ export class UserService {
     return this.http.post<any>(this.apiUrl, user);
   }
 
-  getCurrentUser(): Observable<any> {
-    const token = this.authService.getToken(); // Get token from AuthService
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    return this.http.get<any>(`${this.apiUrl}/current`, { headers });
+  getUserById(userId: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${userId}`);
   }
+
+
 }

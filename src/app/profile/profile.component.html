@@ -1,30 +1,30 @@
-<div class="profile-container">
+<div class="profile-container" *ngIf="user">
     <div class="sidebar">
-        <a href="#" class="back-link">Geri</a>
-        <ul class="menu">
-            <li>Hesabınız</li>
-            <li>Rezarvasyon Geçmişi</li>
-            <li>Yardım ve destek</li>
-        </ul>
-        <a href="#" class="logout-link">Çıkış</a>
+      <a href="" class="back-link">Ana Sayfa</a>
+      <ul class="menu">
+        <li ><a class="links" href="/profile">Hesabım</a></li>
+        <li><a class="links" href="/reservations">Rezarvasyonlarım</a></li>
+        <li>Yardım ve destek</li>
+      </ul>
     </div>
-
+  
     <div class="content">
-        <h1>Hesabınız</h1>
-        <h2>Kişisel Bilgiler</h2>
+      <h2>Kişisel Bilgiler</h2>
+  
+      <div class="form-group">
+        <label for="name">Ad</label>
+        <input type="text" id="name" [value]="user.name" disabled />
         
-        <div class="form-group">
-            <label for="name">Adı</label>
-            <input type="text" id="name" value="Volkan" />
-        </div>
+        <label for="age">Yaş</label>
+        <input type="text" id="age" [value]="user.age" disabled />
         
-        <div class="form-group">
-            <label for="surname">Soyadı</label>
-            <input type="text" id="surname" placeholder="örneğin, Yıldız" />
-        </div>
+        <label for="email">E-mail</label>
+        <input type="text" id="email" [value]="user.email" disabled />
         
-        <button class="save-button" disabled>Değişiklikleri kaydet</button>
-        <a href="#" class="delete-account-link">Hesabımı sil</a>
-    </div>
-</div>
+        <label for="phone">Telefon</label>
+        <input type="text" id="phone" [value]="user.phone" disabled />
+      </div>
 
+    </div>
+  </div>
+  

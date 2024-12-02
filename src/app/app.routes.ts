@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { ProfileComponent } from './profile/profile.component';
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { ReservationPaymentComponent } from './reservation-payment/reservation-payment.component';
+import { ReservationsComponent } from './reservations/reservations.component';
 
 
 export const routes: Routes = [  
@@ -18,6 +19,7 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent},
     { path: 'hotel/:id', component: HotelDetailComponent },
     { path: 'reservation-payment/:hotelId/:roomId', component: ReservationPaymentComponent },
+    { path: 'reservations', component: ReservationsComponent }
     
 
 ];
