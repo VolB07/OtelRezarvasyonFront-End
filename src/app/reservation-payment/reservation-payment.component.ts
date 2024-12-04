@@ -172,7 +172,7 @@ export class ReservationPaymentComponent implements OnInit {
     this.reservationService.createReservation(reservation).subscribe(
       (response) => {
         alert('Rezervasyon başarılı, rezarvasyonlarım ekranına aktarılacaksınız!');
-        this.router.navigate(['/rezervasyonlar']);
+        this.router.navigate(['/reservations']);
       },
       (error) => {
         console.error('Rezervasyon oluşturulurken hata oluştu', error);

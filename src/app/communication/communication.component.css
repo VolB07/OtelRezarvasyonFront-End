@@ -1,4 +1,4 @@
-.profile-container {
+.communication-container {
     display: flex;
     font-family: Arial, sans-serif;
     color: #333;
@@ -24,26 +24,17 @@
 
 .menu li {
     margin-bottom: 15px;
-    color: #666;
-    font-size: 15px;
 }
 
 .links {
-    display: block;
     color: #666;
     text-decoration: none;
-    margin-bottom: 20px;
+    font-size: 15px;
 }
-
 
 .content {
     flex-grow: 1;
     padding: 40px;
-}
-
-.content h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
 }
 
 .content h2 {
@@ -52,18 +43,24 @@
     margin-bottom: 20px;
 }
 
+.contact-form {
+    margin-top: 10px; /* Başlık ile form arasındaki boşluk */
+}
+
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Alanlar arasındaki boşluk */
+    text-align: left; /* Sola hizalama */
 }
 
 .form-group label {
     display: block;
     font-size: 14px;
-    color: #666;
+    color: #333;
     margin-bottom: 5px;
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea {
     width: 50%;
     padding: 10px;
     font-size: 14px;
@@ -71,6 +68,22 @@
     border-radius: 5px;
 }
 
+.form-group textarea {
+    resize: vertical;
+}
 
+.submit-button {
+    width: 52%;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #0073e6;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
+.submit-button:hover {
+    background-color: #005bb5;
+}
 

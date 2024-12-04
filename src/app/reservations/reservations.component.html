@@ -4,7 +4,7 @@
         <ul class="menu">
             <li><a class="links" href="/profile">Hesabım</a></li>
             <li><a class="links" href="/reservations">Rezarvasyonlarım</a></li>
-            <li>Yardım ve destek</li>
+            <li><a class="links" href="/communication">Yardım Ve Destek</a></li>
         </ul>
     </div>
 
@@ -17,10 +17,10 @@
         <div *ngFor="let reservation of reservations" class="reservation-card"
             [ngClass]="{'expired': isExpired(reservation.checkOutDate)}">
             <h3>{{ reservation.hotelName }}</h3>
+            <p>Oda Tipi: {{ reservation.roomTypeName }}</p>
             <p>Giriş Tarihi: {{ reservation.checkInDate | date:'dd/MM/yyyy' }}</p>
             <p>Çıkış Tarihi: {{ reservation.checkOutDate | date:'dd/MM/yyyy' }}</p>
             <p>Toplam Fiyat: {{ reservation.totalPrice | currency:'TRY' }}</p>
-            <p>Oda Tipi: {{ reservation.roomTypeName }}</p>
         </div>
     </div>
 
