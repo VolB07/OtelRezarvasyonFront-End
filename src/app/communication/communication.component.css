@@ -44,12 +44,15 @@
 }
 
 .contact-form {
-    margin-top: 10px; /* Başlık ile form arasındaki boşluk */
+    margin-top: 10px;
+    /* Başlık ile form arasındaki boşluk */
 }
 
 .form-group {
-    margin-bottom: 15px; /* Alanlar arasındaki boşluk */
-    text-align: left; /* Sola hizalama */
+    margin-bottom: 15px;
+    /* Alanlar arasındaki boşluk */
+    text-align: left;
+    /* Sola hizalama */
 }
 
 .form-group label {
@@ -72,6 +75,97 @@
     resize: vertical;
 }
 
+.support-requests-table {
+    width: 52%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.support-requests-table th,
+.support-requests-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.support-requests-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Hamburger Menü */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    margin: 10px;
+  }
+  
+  .hamburger-menu .bar {
+    height: 4px;
+    width: 100%;
+    background-color: #333;
+    border-radius: 2px;
+  }
+  
+  /* Kapatma ikonu */
+  .close-menu {
+    display: none;
+    cursor: pointer;
+    font-size: 30px;
+    color: #333;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  /* Yan Menü */
+  .sidebar {
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    width: 200px; /* Sabit genişlik */
+  }
+  
+  /* Sidebar'ı varsayılan olarak açık tutuyoruz */
+  .sidebar.hidden {
+    display: none; /* Yan menüyü mobilde gizle */
+  }
+  
+  /* Sidebar'ı açma ve kapama */
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  /* Responsive Tasarım */
+  @media (max-width: 768px) {
+    .hamburger-menu {
+      display: flex;
+    }
+  
+    .sidebar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      background: #fff;
+      z-index: 1000;
+      transform: translateX(-100%);
+      display: block; /* Mobilde görünür yapalım */
+    }
+  
+    .sidebar.active {
+      transform: translateX(0); /* Menüyü açma */
+    }
+  
+    .close-menu {
+      display: block; /* Mobilde kapatma ikonu görünür */
+    }
+  }
+  
+  
 .submit-button {
     width: 52%;
     padding: 10px 20px;
@@ -81,9 +175,9 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 .submit-button:hover {
     background-color: #005bb5;
 }
-
