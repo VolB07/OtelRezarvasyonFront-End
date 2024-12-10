@@ -24,5 +24,9 @@ export class UserService {
     return this.http.get(`${this.apiUrl}/${userId}`);
   }
 
+  getRole(userId: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:5179/api/get-role/${userId}`);
+  }
+
 
 }

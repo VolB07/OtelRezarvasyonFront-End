@@ -52,7 +52,18 @@ export class LoginComponent {
                 console.log('Kullanıcı ID kaydedildi:', response.userId);
               }
   
-              this.router.navigate(['/']);
+              // Kullanıcı rolünü kaydet
+              if (response.role) {
+                localStorage.setItem('role', response.role);
+                console.log('Kullanıcı rolü kaydedildi:', response.role);
+              }
+  
+              // Rol bazlı yönlendirme
+              if (response.role === 'admin' || response.role === 'receptionist' || response.role === 'cleaner' || response.role === 'chef') {
+                this.router.navigate(['/admin']); // Admin paneline yönlendirme
+              } else {
+                this.router.navigate(['/']); // Ana sayfaya yönlendirme
+              }
             } else {
               alert('Token alınamadı. Lütfen tekrar deneyin.');
             }
@@ -66,6 +77,7 @@ export class LoginComponent {
       alert('Lütfen tüm alanları doldurun.');
     }
   }
+  
   
   
 
