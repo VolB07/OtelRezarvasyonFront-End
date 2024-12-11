@@ -13,6 +13,7 @@ import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import { RoomManagementFormComponent } from './room-management-form/room-management-form.component';
 import { RoomService } from './room.service';
 import { ReservationPaymentComponent } from './reservation-payment/reservation-payment.component';
+import { RoleManagementFormComponent } from './role-management-form/role-management-form.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ReservationPaymentComponent } from './reservation-payment/reservation-p
     ReactiveFormsModule,
     HotelFormComponent,
     EditHotelComponent,
-    ReservationPaymentComponent
+    ReservationPaymentComponent,
+    RoleManagementFormComponent
   ],
   providers: [provideHttpClient(),RoomService],
 // AppComponent'i burada kullanıyoruz

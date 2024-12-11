@@ -1,0 +1,31 @@
+<div class="role-management-form">
+    <h2>Rol Yönetimi</h2>
+  
+    <!-- Kullanıcı Seçme Dropdown -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="userSelect">Kullanıcı Seç</label>
+        <select id="userSelect" [(ngModel)]="selectedUserId" (change)="onUserSelect()" class="form-control">
+          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Rol Seçme Dropdown -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="roleSelect">Rol Seç</label>
+        <select id="roleSelect" [(ngModel)]="selectedRole" class="form-control">
+          <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Kaydetme Butonu -->
+    <div class="form-row">
+      <div class="form-group">
+        <button (click)="assignRole()" [disabled]="!selectedUserId || !selectedRole">Kaydet</button>
+      </div>
+    </div>
+  </div>
+  

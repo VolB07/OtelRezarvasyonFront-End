@@ -25,8 +25,20 @@ export class UserService {
   }
 
   getRole(userId: number): Observable<any> {
-    return this.http.get<any>(`http://localhost:5179/api/get-role/${userId}`);
+    return this.http.get<any>(`http://localhost:5179/api/users/role/${userId}`);
   }
+
+
+  assignRole(userId: number, role: string): Observable<any> {
+    return this.http.put<any>(
+      `http://localhost:5179/api/Users/role/${userId}`, 
+      JSON.stringify(role), // Role'ü JSON olarak göndermek için stringify kullanıyoruz
+      { headers: { 'Content-Type': 'application/json' } } // Content-Type'ı belirt
+    );
+  }
+  
+  
+  
 
 
 }
