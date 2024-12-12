@@ -1,10 +1,11 @@
 .admin-panel {
   display: flex;
+  background-color: #b3b3b3;
 }
 
 .sidebar {
   width: 200px;
-  background-color: #d3d3d3;
+  background-color: slategrey;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -14,9 +15,9 @@
 }
 
 .profile-icon {
-  width: 80px;
-  height: 80px;
-  background-image: url('C:/otelRezervasyonUygulamasi/src/app/img/Ekran görüntüsü 2024-02-24 173217.png');
+  width: 128px;
+  height: 128px;
+  background-image: url('C:/otelRezervasyonUygulamasi/src/app/img/552721.png');
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -39,6 +40,7 @@
   transition: background-color 0.3s;
   user-select: none; /* Yazıyı seçilemez yap */
   position: relative; /* Çizgi için */
+  border-radius: 20px;
 }
 
 .menu-item:hover {
@@ -52,8 +54,6 @@
   position: absolute;
   left: 0;
   right: 0;
-  height: 1px; /* Çizginin kalınlığı */
-  background-color: #888; /* Çizgi rengi */
 }
 
 .menu-item::before {
@@ -65,7 +65,8 @@
 }
 
 .content-area {
-  margin-left: 20px; /* Sidebar ile içerik alanı arasındaki boşluk */
+  background-color: slategrey;
+  margin-left: 1px; /* Sidebar ile içerik alanı arasındaki boşluk */
   padding: 20px;
   flex-grow: 1; /* İçerik alanının genişlemesini sağlar */
 }

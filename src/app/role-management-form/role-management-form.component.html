@@ -1,31 +1,74 @@
 <div class="role-management-form">
-    <h2>Rol Yönetimi</h2>
-  
-    <!-- Kullanıcı Seçme Dropdown -->
-    <div class="form-row">
-      <div class="form-group">
-        <label for="userSelect">Kullanıcı Seç</label>
-        <select id="userSelect" [(ngModel)]="selectedUserId" (change)="onUserSelect()" class="form-control">
-          <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
-        </select>
-      </div>
+  <h2>Rol Yönetimi</h2>
+
+  <!-- Filtreleme Alanları -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="nameFilter">Ad ile Filtrele</label>
+      <input
+        type="text"
+        id="nameFilter"
+        [(ngModel)]="nameFilter"
+        (input)="applyFilters()"
+        placeholder="Ad girin"
+        class="form-control"
+      />
     </div>
-  
-    <!-- Rol Seçme Dropdown -->
-    <div class="form-row">
-      <div class="form-group">
-        <label for="roleSelect">Rol Seç</label>
-        <select id="roleSelect" [(ngModel)]="selectedRole" class="form-control">
-          <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
-        </select>
-      </div>
+    <div class="form-group">
+      <label for="emailFilter">E-posta ile Filtrele</label>
+      <input
+        type="text"
+        id="emailFilter"
+        [(ngModel)]="emailFilter"
+        (input)="applyFilters()"
+        placeholder="E-posta girin"
+        class="form-control"
+      />
     </div>
-  
-    <!-- Kaydetme Butonu -->
-    <div class="form-row">
-      <div class="form-group">
-        <button (click)="assignRole()" [disabled]="!selectedUserId || !selectedRole">Kaydet</button>
+  </div>
+
+  <!-- Kullanıcı Seçme Dropdown -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="userSelect">Kullanıcı Seç</label>
+      <div class="custom-dropdown">
+        <div class="selected-item" (click)="toggleDropdown()">
+          <span>{{ selectedUserName  }}</span>
+          &#11206;
+        </div>
+        <div class="dropdown-options" *ngIf="dropdownVisible">
+          <div *ngFor="let user of filteredUsers" 
+               class="dropdown-option" 
+               (click)="selectUser(user)">
+            <div class="user-option">
+              <span class="user-name">{{ user.name }}</span>
+              <span class="user-email">{{ user.email }}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
+
+  <!-- Rol Seçme Dropdown -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="roleSelect">Rol Seç</label>
+      <select id="roleSelect" [(ngModel)]="selectedRole" class="form-control">
+        <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Kaydetme Butonu -->
+  <div class="form-row">
+    <div class="form-group">
+      <button
+        (click)="assignRole()"
+        [disabled]="!selectedUserId || !selectedRole"
+      >
+        Kaydet
+      </button>
+    </div>
+  </div>
+</div>
