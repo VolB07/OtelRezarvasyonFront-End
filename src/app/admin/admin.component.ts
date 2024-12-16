@@ -4,11 +4,15 @@ import { EditHotelComponent } from "../edit-hotel/edit-hotel.component"; // Otel
 import { RoomManagementFormComponent } from "../room-management-form/room-management-form.component"; // Oda yönetim formu
 import { CommonModule } from '@angular/common';
 import { RoleManagementFormComponent } from '../role-management-form/role-management-form.component';
+import { ReceptionFormComponent } from '../reception-form/reception-form.component';
+
+
+
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  imports: [HotelFormComponent, EditHotelComponent, RoomManagementFormComponent,RoleManagementFormComponent, CommonModule],
+  imports: [HotelFormComponent, EditHotelComponent, RoomManagementFormComponent,RoleManagementFormComponent, CommonModule, ReceptionFormComponent],
   standalone: true,
   styleUrls: ['./admin.component.css']
 })
@@ -16,13 +20,15 @@ export class AdminComponent {
   isHotelFormVisible: boolean = false;
   isEditHotelFormVisible: boolean = false; // Otel düzenleme formu için yeni bir değişken
   isRoomManagementFormVisible: boolean = false; // Oda yönetim formu için yeni bir değişken
-  isRoleManagementFormVisible: boolean = false
+  isRoleManagementFormVisible: boolean = false;
+  isReceptionFormVisible: boolean = false;
 
   toggleHotelForm() {
     this.isHotelFormVisible = !this.isHotelFormVisible;
     this.isEditHotelFormVisible = false; // Otel ekleme formunu açtığınızda düzenleme formunu kapat
     this.isRoomManagementFormVisible = false; // Oda yönetim formunu kapat
     this.isRoleManagementFormVisible = false;
+    this.isReceptionFormVisible = false;
     console.log("Otel form visibility toggled:", this.isHotelFormVisible);
   }
 
@@ -31,6 +37,7 @@ export class AdminComponent {
     this.isHotelFormVisible = false; // Düzenleme formunu açtığınızda ekleme formunu kapat
     this.isRoomManagementFormVisible = false; // Oda yönetim formunu kapat
     this.isRoleManagementFormVisible = false;
+    this.isReceptionFormVisible = false;
     console.log("Otel düzenleme form visibility toggled:", this.isEditHotelFormVisible);
   }
 
@@ -39,6 +46,7 @@ export class AdminComponent {
     this.isHotelFormVisible = false; // Oda yönetim formunu açtığınızda ekleme formunu kapat
     this.isEditHotelFormVisible = false; // Oda yönetim formunu açtığınızda düzenleme formunu kapat
     this.isRoleManagementFormVisible = false;
+    this.isReceptionFormVisible = false;
     console.log("Oda yönetim form visibility toggled:", this.isRoomManagementFormVisible);
   }
 
@@ -47,5 +55,15 @@ export class AdminComponent {
     this.isHotelFormVisible = false;
     this.isEditHotelFormVisible = false;
     this.isRoomManagementFormVisible = false;
+    this.isReceptionFormVisible = false;
+  }
+
+  toggleReceptionForm() {
+    this.isReceptionFormVisible = !this.isReceptionFormVisible;
+    this.isHotelFormVisible = false;
+    this.isEditHotelFormVisible = false;
+    this.isRoomManagementFormVisible = false;
+    this.isRoleManagementFormVisible = false;
+    console.log('Reception form visibility toggled:', this.isReceptionFormVisible);
   }
 }

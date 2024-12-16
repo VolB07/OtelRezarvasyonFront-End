@@ -1,0 +1,33 @@
+<form [formGroup]="reservationForm" (ngSubmit)="submitForm()">
+  <h2>Resepsiyon</h2>
+
+  <div>
+    <label for="hotel">Otel Seç:</label>
+    <select id="hotel" formControlName="hotel" (change)="onHotelChange($event)">
+      <option *ngFor="let hotel of hotels" [value]="hotel.id">{{ hotel.name }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="reservation">Rezervasyon Seç:</label>
+    <select id="reservation" formControlName="reservation" (change)="onReservationChange($event)">
+      <option *ngFor="let reservation of reservations" [value]="reservation.reservationId">
+        {{ reservation.check_in | date: 'yyyy-MM-dd' }} | {{ reservation.check_out | date: 'yyyy-MM-dd' }} | Durum: {{ reservation.status }}
+      </option>
+    </select>
+  </div>
+  
+
+  <div>
+    <label for="reservation_status">Rezervasyon Durumu:</label>
+    <select
+      id="reservation_status"
+      formControlName="reservation_status"
+      (change)="onStatusChange($event)"
+    >
+      <option *ngFor="let status of reservationStatuses" [value]="status">{{ status }}</option>
+    </select>
+  </div>
+
+  <button type="submit" (ngSubmit)="submitForm()">Rezervasyonu Gönder</button>
+</form>

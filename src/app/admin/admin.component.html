@@ -15,11 +15,15 @@
     <div class="menu-item" (click)="toggleRoleManagementForm()">
       Rolleri Yönet
     </div>
+    <div class="menu-item" (click)="toggleReceptionForm()">
+      Resepsiyon
+    </div>
   </div>
   <div class="content-area">
     <app-hotel-form *ngIf="isHotelFormVisible"></app-hotel-form>
     <app-edit-hotel *ngIf="isEditHotelFormVisible"></app-edit-hotel>
     <app-room-management-form *ngIf="isRoomManagementFormVisible"></app-room-management-form>
     <app-role-management-form *ngIf="isRoleManagementFormVisible"></app-role-management-form>
+    <app-reception-form *ngIf="isReceptionFormVisible"></app-reception-form>
   </div>
 </div>

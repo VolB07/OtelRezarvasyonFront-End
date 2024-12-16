@@ -21,6 +21,7 @@
             <p>Giriş Tarihi: {{ reservation.checkInDate | date:'dd/MM/yyyy' }}</p>
             <p>Çıkış Tarihi: {{ reservation.checkOutDate | date:'dd/MM/yyyy' }}</p>
             <p>Toplam Fiyat: {{ reservation.totalPrice | currency:'TRY' }}</p>
+            <p>Rezervasyon Durumu: {{ reservation.status }}</p>
         </div>
     </div>
 

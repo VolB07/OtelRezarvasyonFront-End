@@ -62,7 +62,6 @@ export class EditHotelComponent implements OnInit {
   
   
   onUpdate(): void {
-    debugger
     if (this.editHotelForm.valid) {
       const id = Number(this.editHotelForm.get('id')?.value); // hotelId'yi al ve number'a çevir
       console.log('Updating Hotel ID:', id); // ID'nin doğru geldiğini kontrol et

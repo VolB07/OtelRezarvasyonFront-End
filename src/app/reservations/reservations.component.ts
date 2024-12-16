@@ -1,4 +1,4 @@
-import { ReservationService } from 'C:/otelRezervasyonUygulamasi/src/app/reservation.service';
+import { ReservationService } from 'C:/otelRezervasyonUygulamasi/src/app/reservations.service';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 
