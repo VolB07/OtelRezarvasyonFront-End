@@ -1,6 +1,7 @@
 <form [formGroup]="reservationForm" (ngSubmit)="submitForm()">
-  <h2>Resepsiyon</h2>
+  <h2>Resepsiyon Rezervasyon Yönet</h2>
 
+  <!-- Otel Seçimi -->
   <div>
     <label for="hotel">Otel Seç:</label>
     <select id="hotel" formControlName="hotel" (change)="onHotelChange($event)">
@@ -8,26 +9,50 @@
     </select>
   </div>
 
+  <!-- Rezervasyon Seçimi - Tablo Görünümü -->
   <div>
-    <label for="reservation">Rezervasyon Seç:</label>
-    <select id="reservation" formControlName="reservation" (change)="onReservationChange($event)">
-      <option *ngFor="let reservation of reservations" [value]="reservation.reservationId">
-        {{ reservation.check_in | date: 'yyyy-MM-dd' }} | {{ reservation.check_out | date: 'yyyy-MM-dd' }} | Durum: {{ reservation.status }}
-      </option>
-    </select>
-  </div>
-  
+    <label>Rezervasyon Seç:</label>
+    <table class="reservation-table">
+      <thead>
+        <tr>
+          <th>Ad Soyad</th>
+          <th>Oda Tipi</th>
+          <th>Giriş Tarihi</th>
+          <th>Çıkış Tarihi</th>
+          <th>Toplam Fiyat</th>
+          <th>Durum</th>
+          <th>Seç</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reservation of reservations"
+          [class.selected]="reservation.reservationId === selectedReservation?.reservationId"
+          (click)="onReservationSelect(reservation)">
+          <td>{{ reservation.name || 'Bilinmeyen' }}</td>
+          <td>{{ reservation.RoomTypeName || 'Bilinmeyen' }}</td>
+          <td>{{ reservation.check_in | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ reservation.check_out | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ reservation.total_price | currency:'TRY' }}</td>
+          <td>{{ reservation.status }}</td>
+          <td>
+            <input type="radio" name="selectedReservation"
+              [checked]="reservation.reservationId === selectedReservation?.reservationId" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
+
+  </div>
+
+  <!-- Rezervasyon Durumu Seçimi -->
   <div>
     <label for="reservation_status">Rezervasyon Durumu:</label>
-    <select
-      id="reservation_status"
-      formControlName="reservation_status"
-      (change)="onStatusChange($event)"
-    >
+    <select id="reservation_status" formControlName="reservation_status" (change)="onStatusChange($event)">
       <option *ngFor="let status of reservationStatuses" [value]="status">{{ status }}</option>
     </select>
   </div>
 
-  <button type="submit" (ngSubmit)="submitForm()">Rezervasyonu Gönder</button>
+  <!-- Gönder Butonu -->
+  <button type="submit">Rezervasyonu Gönder</button>
 </form>

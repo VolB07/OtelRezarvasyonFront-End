@@ -1,52 +1,35 @@
 <div class="role-management-form">
-  <h2>Rol Yönetimi</h2>
+  <h2>{{ isEditMode ? 'Çalışan Ve Rol Düzenle' : 'Çalışan Ve Rol Ekle' }}</h2>
 
-  <!-- Filtreleme Alanları -->
-  <div class="form-row">
+  <!-- Çalışan Seçme Dropdown (Düzenleme için) -->
+  <div class="form-row" *ngIf="employees.length > 0">
     <div class="form-group">
-      <label for="nameFilter">Ad ile Filtrele</label>
-      <input
-        type="text"
-        id="nameFilter"
-        [(ngModel)]="nameFilter"
-        (input)="applyFilters()"
-        placeholder="Ad girin"
+      <label for="employeeSelect">Çalışan Seç (Düzenleme için)</label>
+      <select
+        id="employeeSelect"
+        [(ngModel)]="selectedEmployeeId"
+        (change)="onEmployeeSelectChange()"
         class="form-control"
-      />
-    </div>
-    <div class="form-group">
-      <label for="emailFilter">E-posta ile Filtrele</label>
-      <input
-        type="text"
-        id="emailFilter"
-        [(ngModel)]="emailFilter"
-        (input)="applyFilters()"
-        placeholder="E-posta girin"
-        class="form-control"
-      />
+      >
+        <option value="" disabled selected>Bir çalışan seçin</option>
+        <option *ngFor="let employee of employees" [value]="employee.id">
+          {{ employee.name }}
+        </option>
+      </select>
     </div>
   </div>
 
-  <!-- Kullanıcı Seçme Dropdown -->
+  <!-- Çalışan Adı -->
   <div class="form-row">
     <div class="form-group">
-      <label for="userSelect">Kullanıcı Seç</label>
-      <div class="custom-dropdown">
-        <div class="selected-item" (click)="toggleDropdown()">
-          <span>{{ selectedUserName  }}</span>
-          &#11206;
-        </div>
-        <div class="dropdown-options" *ngIf="dropdownVisible">
-          <div *ngFor="let user of filteredUsers" 
-               class="dropdown-option" 
-               (click)="selectUser(user)">
-            <div class="user-option">
-              <span class="user-name">{{ user.name }}</span>
-              <span class="user-email">{{ user.email }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <label for="employeeName">Çalışan Adı</label>
+      <input
+        type="text"
+        id="employeeName"
+        [(ngModel)]="employeeName"
+        placeholder="Çalışan adını girin"
+        class="form-control"
+      />
     </div>
   </div>
 
@@ -55,8 +38,48 @@
     <div class="form-group">
       <label for="roleSelect">Rol Seç</label>
       <select id="roleSelect" [(ngModel)]="selectedRole" class="form-control">
+        <option value="" disabled selected>Bir rol seçin</option>
         <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
       </select>
+    </div>
+  </div>
+
+  <!-- Otel Seçme Dropdown -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="hotelSelect">Otel Seç</label>
+      <select id="hotelSelect" [(ngModel)]="selectedHotelId" class="form-control">
+        <option value="" disabled selected>Bir otel seçin</option>
+        <option *ngFor="let hotel of hotels" [value]="hotel.id">{{ hotel.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- E-posta -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="email">E-posta</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="email"
+        placeholder="Çalışan e-posta adresini girin"
+        class="form-control"
+      />
+    </div>
+  </div>
+
+  <!-- Telefon -->
+  <div class="form-row">
+    <div class="form-group">
+      <label for="phone">Telefon</label>
+      <input
+        type="text"
+        id="phone"
+        [(ngModel)]="phone"
+        placeholder="Çalışan telefon numarasını girin"
+        class="form-control"
+      />
     </div>
   </div>
 
@@ -64,10 +87,14 @@
   <div class="form-row">
     <div class="form-group">
       <button
-        (click)="assignRole()"
-        [disabled]="!selectedUserId || !selectedRole"
+        (click)="saveEmployee()"
+        [disabled]="!selectedRole || !selectedHotelId || !employeeName || !email || !phone"
+        class="btn btn-primary"
       >
-        Kaydet
+        {{ isEditMode ? 'Çalışanı Güncelle' : 'Çalışan Ekle' }}
+      </button>
+      <button *ngIf="isEditMode" (click)="cancelEdit()" class="btn btn-secondary">
+        İptal
       </button>
     </div>
   </div>

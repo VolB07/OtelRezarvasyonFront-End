@@ -38,17 +38,31 @@ export class ReceptionFormComponent implements OnInit {
     this.loadHotels();
   }
 
-  // Otel verilerini yükleme
-  loadHotels(): void {
-    this.hotelService.getHotels().subscribe(
-      (hotels) => {
-        this.hotels = hotels;
-      },
-      (error) => {
-        console.error("Otel verisi yüklenemedi", error);
-      }
-    );
+// Otel verilerini yükleme
+loadHotels(): void {
+  const userId = localStorage.getItem('userId'); // localStorage'dan user_id'yi al
+
+  if (!userId) {
+    console.error('User ID bulunamadı. Lütfen oturum açın.');
+    alert('Oturum açmanız gerekmektedir.');
+    return;
   }
+
+  this.hotelService.getHotels().subscribe(
+    (hotels) => {
+      // Otelleri filtrele, sadece kullanıcıya ait otelleri göster
+      this.hotels = hotels.filter(hotel => hotel.user_id === Number(userId));
+
+      if (this.hotels.length === 0) {
+        console.log('Kullanıcıya ait otel bulunamadı.');
+      }
+    },
+    (error) => {
+      console.error("Otel verisi yüklenemedi", error);
+    }
+  );
+}
+
 
   onHotelChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
@@ -65,14 +79,21 @@ export class ReceptionFormComponent implements OnInit {
   loadReservations(hotelId: number): void {
     this.reservationService.getReservationsByHotelId(hotelId).subscribe(
       (reservations) => {
-        console.log('Yüklenen Rezervasyonlar:', reservations);  // Burada rezervasyonları kontrol et
-        this.reservations = reservations;
+        console.log('Yüklenen Rezervasyonlar:', reservations);
+        
+        // Beklemede olan rezervasyonları filtrele
+        this.reservations = reservations.filter(
+          (reservation) => reservation.status === 'pending'
+        );
+  
+        console.log('Beklemedeki Rezervasyonlar:', this.reservations);
       },
       (error) => {
         console.error("Rezervasyon verisi yüklenemedi", error);
       }
     );
   }
+  
 
 
 
@@ -101,14 +122,6 @@ export class ReceptionFormComponent implements OnInit {
     }
   }
 
-
-
-
-
-
-
-
-
   // Durum değiştiğinde güncelle
   onStatusChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement; // Type assertion
@@ -118,6 +131,21 @@ export class ReceptionFormComponent implements OnInit {
       this.selectedReservation.status = selectedStatus; // Rezervasyon durumu güncellendi
     }
   }
+
+  onReservationSelect(reservation: any): void {
+    this.selectedReservation = reservation;
+  
+    // Formu seçili rezervasyonla güncelle
+    this.reservationForm.patchValue({
+      reservation: reservation.reservationId,
+      room_id: reservation.roomId,
+      reservation_status: reservation.status,
+      room_type_name: reservation.RoomTypeName
+    });
+  
+    console.log('Seçili Rezervasyon:', this.selectedReservation);
+  }
+  
 
   submitForm(): void {
     const reservationId = this.selectedReservation?.reservationId; // Seçilen rezervasyon ID'si

@@ -49,6 +49,40 @@ form {
     border-color: #4CAF50;
     outline: none;
   }
+
+  .reservation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .reservation-table th,
+  .reservation-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .reservation-table th {
+    background-color: #4CAF50;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .reservation-table tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  .reservation-table tr.selected {
+    background-color: #c8e6c9; /* Seçilen satır rengi */
+  }
+  
+  input[type="radio"] {
+    cursor: pointer;
+  }
+  
   
   /* Buton Stili */
   button {

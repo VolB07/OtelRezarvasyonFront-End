@@ -1,11 +1,11 @@
 .admin-panel {
   display: flex;
-  background-color: #b3b3b3;
+  background-color: rgb(0, 0, 0);
 }
 
 .sidebar {
   width: 200px;
-  background-color: slategrey;
+  background-color: rgb(0, 0, 0);
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -15,9 +15,9 @@
 }
 
 .profile-icon {
-  width: 128px;
-  height: 128px;
-  background-image: url('C:/otelRezervasyonUygulamasi/src/app/img/552721.png');
+  width: 50px;
+  height: 50px;
+  background-image: url('C:/otelRezervasyonUygulamasi/src/app/img/icons8-admin-50.png');
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -65,7 +65,7 @@
 }
 
 .content-area {
-  background-color: slategrey;
+  background-color: rgb(215, 215, 215);
   margin-left: 1px; /* Sidebar ile içerik alanı arasındaki boşluk */
   padding: 20px;
   flex-grow: 1; /* İçerik alanının genişlemesini sağlar */

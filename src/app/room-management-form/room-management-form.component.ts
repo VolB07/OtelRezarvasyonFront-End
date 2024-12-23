@@ -50,19 +50,27 @@ export class RoomManagementFormComponent implements OnInit {
     );
   }
 
-  private loadHotels() {
-    this.hotelService.getHotels().subscribe(
-      (hotels) => {
-        this.hotels = hotels;
-        console.log("Oteller yüklendi:", this.hotels);
-        this.checkLoadingComplete(); // Yükleme tamamlandı mı kontrol et
-      },
-      (error) => {
-        console.error("Oteller yüklenirken bir hata oluştu:", error);
-        this.isLoading = false; // Yükleme hatası durumunda
+  loadHotels(): void {
+    const userId = localStorage.getItem('userId'); // localStorage'dan user_id'yi al
+  
+    if (!userId) {
+      console.error('User ID bulunamadı. Lütfen oturum açın.');
+      alert('Oturum açmanız gerekmektedir.');
+      return;
+    }
+  
+    this.hotelService.getHotels().subscribe(data => {
+      // Otelleri filtrele, sadece kullanıcıya ait otelleri göster
+      this.hotels = data.filter(hotel => hotel.user_id === Number(userId));
+  
+      if (this.hotels.length === 0) {
+        console.log('Kullanıcıya ait otel bulunamadı.');
       }
-    );
+    }, error => {
+      console.error('Otel yüklenirken hata:', error);
+    });
   }
+  
 
   private checkLoadingComplete() {
     if (this.hotels.length > 0 && this.roomTypes.length > 0) {

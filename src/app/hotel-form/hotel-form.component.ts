@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms'; // Burayı ekle
-import { HotelService } from 'C:/otelRezervasyonUygulamasi/src/app/hotel.service'; // Servisi içe aktar
+import { ReactiveFormsModule } from '@angular/forms';
+import { HotelService } from 'C:/otelRezervasyonUygulamasi/src/app/hotel.service';
 
 @Component({
   selector: 'app-hotel-form',
   templateUrl: './hotel-form.component.html',
   styleUrls: ['./hotel-form.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule] // Burayı güncelle
+  imports: [CommonModule, ReactiveFormsModule]
 })
 export class HotelFormComponent {
   hotelForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private hotelService: HotelService) { // Servisi ekle
+  constructor(private fb: FormBuilder, private hotelService: HotelService) {
     this.hotelForm = this.fb.group({
       name: ['', Validators.required],
       address: ['', Validators.required],
@@ -27,21 +27,35 @@ export class HotelFormComponent {
   }
 
   onSubmit() {
+    debugger
     if (this.hotelForm.valid) {
-      console.log("Otel verileri:", this.hotelForm.value);
-      this.hotelService.addHotel(this.hotelForm.value).subscribe(
+      const userId = localStorage.getItem('userId'); // Local storage'den userId al
+      if (!userId) {
+        alert('Kullanıcı kimliği bulunamadı. Lütfen giriş yapın.');
+        return;
+      }
+
+      const hotelData = {
+        ...this.hotelForm.value, // Formdaki tüm verileri kopyala
+        user_id: +userId // userId'yi ekle ve string'den sayıya dönüştür
+      };
+
+      console.log("Otel verileri:", hotelData);
+
+      this.hotelService.addHotel(hotelData).subscribe(
         response => {
           console.log("Otel başarıyla eklendi:", response);
-          alert('Otel eklendi!');
-          // Başarılı ekleme işlemi için gerekli işlemleri yapabilirsiniz
-          this.hotelForm.reset(); // Formu sıfırlamak için
+          alert('Otel başarıyla eklendi!');
+          this.hotelForm.reset();
         },
         error => {
           console.error("Otel eklenirken bir hata oluştu:", error);
+          alert('Otel eklenirken bir hata oluştu.');
         }
       );
     } else {
       console.log("Form geçersiz");
+      alert('Lütfen tüm alanları doğru doldurun.');
     }
   }
 }

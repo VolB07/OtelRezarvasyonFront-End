@@ -32,16 +32,32 @@ export class EditHotelComponent implements OnInit {
   }
 
   loadHotels(): void {
+    const userId = localStorage.getItem('userId'); // localStorage'dan user_id'yi al
+  
+    if (!userId) {
+      console.error('User ID bulunamadı. Lütfen oturum açın.');
+      alert('Oturum açmanız gerekmektedir.');
+      return;
+    }
+  
     this.hotelService.getHotels().subscribe(data => {
-      this.hotels = data; // Alınan veriyi otel listesine ata
+      // Otelleri filtrele, sadece kullanıcıya ait otelleri göster
+      this.hotels = data.filter(hotel => hotel.user_id === Number(userId));
+  
+      if (this.hotels.length === 0) {
+        console.log('Kullanıcıya ait otel bulunamadı.');
+      }
+    }, error => {
+      console.error('Otel yüklenirken hata:', error);
     });
   }
+  
 
   onHotelSelect(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     const id = Number(selectElement.value); // ID'yi number'a dönüştür
     console.log('Selected Hotel ID:', id); // Seçilen ID'yi kontrol et
-  
+
     if (id && this.hotels) {
       const selectedHotel = this.hotels.find(hotel => hotel.id === id);
       if (selectedHotel) {
@@ -59,15 +75,26 @@ export class EditHotelComponent implements OnInit {
       }
     }
   }
-  
-  
+
   onUpdate(): void {
     if (this.editHotelForm.valid) {
-      const id = Number(this.editHotelForm.get('id')?.value); // hotelId'yi al ve number'a çevir
+      const id = Number(this.editHotelForm.get('id')?.value); // Hotel ID'sini al ve number'a çevir
+      const userId = localStorage.getItem('userId'); // localStorage'dan user_id'yi al
+  
+      // Eğer localStorage'dan user_id alınamazsa, kullanıcı oturumu açmamış olabilir
+      if (!userId) {
+        console.error('User ID bulunamadı. Lütfen oturum açın.');
+        alert('Oturum açmanız gerekmektedir.');
+        return; // Oturum açmamış kullanıcı için işlem yapılmasın
+      }
+  
       console.log('Updating Hotel ID:', id); // ID'nin doğru geldiğini kontrol et
-      const updatedHotel = { ...this.editHotelForm.value };
-      
-      //delete updatedHotel.hotelId; // ID'yi API'ye gönderirken kaldırıyoruz
+  
+      // user_id'yi form verilerine ekliyoruz
+      const updatedHotel = {
+        ...this.editHotelForm.value,
+        user_id: userId // Kullanıcı ID'sini ekliyoruz
+      };
   
       this.hotelService.updateHotel(id, updatedHotel).subscribe(
         response => {
