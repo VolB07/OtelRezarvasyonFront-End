@@ -15,6 +15,8 @@ import { RoomService } from './room.service';
 import { ReservationPaymentComponent } from './reservation-payment/reservation-payment.component';
 import { RoleManagementFormComponent } from './role-management-form/role-management-form.component';
 import { ReceptionFormComponent } from './reception-form/reception-form.component';
+import { HousekeepingManagementComponent } from './housekeeping-management/housekeeping-management.component';
+import { KitchenManagementFormComponent } from './kitchen-management-form/kitchen-management-form.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { ReceptionFormComponent } from './reception-form/reception-form.componen
     ReservationPaymentComponent,
     RoleManagementFormComponent,
     ReceptionFormComponent,
-    RoomManagementFormComponent
+    RoomManagementFormComponent,
+    HousekeepingManagementComponent,
+    KitchenManagementFormComponent,
   ],
   providers: [provideHttpClient(),RoomService],
 // AppComponent'i burada kullanıyoruz

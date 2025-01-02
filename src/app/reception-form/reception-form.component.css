@@ -1,113 +1,156 @@
 /* Form Genel Stil */
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-  }
-  
-  form h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  /* Form Alanları */
-  div {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  label {
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-    font-size: 16px;
-  }
-  
-  select,
-  input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  select:focus,
-  input:focus {
-    border-color: #4CAF50;
-    outline: none;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(43, 43, 43, 0.95);
+  color: #f8f9fa;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.8s ease-out forwards;
+}
 
-  .reservation-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+/* Form Animasyonu */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
   }
-  
-  .reservation-table th,
-  .reservation-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+  to {
+      opacity: 1;
+      transform: translateY(0);
   }
-  
-  .reservation-table th {
-    background-color: #4CAF50;
-    color: #fff;
-    font-weight: bold;
-  }
-  
-  .reservation-table tr:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
-  }
-  
-  .reservation-table tr.selected {
-    background-color: #c8e6c9; /* Seçilen satır rengi */
-  }
-  
-  input[type="radio"] {
-    cursor: pointer;
-  }
-  
-  
-  /* Buton Stili */
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    width: 100%;
-    margin-top: 15px;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-  }
-  
-  /* Tıklanabilir alanlar */
-  input[readonly] {
-    background-color: #f0f0f0;
-    cursor: not-allowed;
-  }
+}
+
+/* Form Başlığı */
+form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Form Alanları */
+div {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #ffffff;
+  font-size: 16px;
+  display: block;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Input ve Select Stili */
+select,
+input {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+  background: linear-gradient(145deg, #414141, #2d2d2d);
+  color: #ffffff;
+  box-shadow: 
+      -8px -8px 15px rgba(255, 255, 255, 0.05),
+      8px 8px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  background: linear-gradient(145deg, #575757, #414141);
+  box-shadow: 
+      -10px -10px 20px rgba(255, 255, 255, 0.07),
+      10px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Dropdown Menü Stilleri */
+select option {
+  background: #2d2d2d;
+  color: #ffffff;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 15px;
+  padding-right: 40px;
+}
+
+/* Tablolar */
+.reservation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-table th,
+.reservation-table td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: center;
+  background: #1a1a2e;
+  color: #ffffff;
+}
+
+.reservation-table th {
+  background: #16213e;
+  color: #ffffff;
+}
+
+/* Buton Stili */
+button {
+  background: linear-gradient(145deg, #414141, #2d2d2d);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  margin-top: 15px;
+  box-shadow: 
+      -8px -8px 15px rgba(255, 255, 255, 0.05),
+      8px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+  background: linear-gradient(145deg, #575757, #414141);
+  transform: scale(1.02);
+  box-shadow: 
+      -10px -10px 20px rgba(255, 255, 255, 0.07),
+      10px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+button:disabled {
+  background: #2d2d2d;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Okunabilirlik için Kilitli Alanlar */
+input[readonly] {
+  background: #2d2d2d;
+  color: #999;
+  cursor: not-allowed;
+  border-radius: 8px;
+}

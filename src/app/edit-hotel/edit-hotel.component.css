@@ -3,19 +3,36 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
+  max-width: 800px;
+  margin: 15px auto;
+  padding: 25px;
+  background: rgba(43, 43, 43, 0.95);
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  animation: formEntry 0.8s ease-out;
+}
+
+@keyframes formEntry {
+  from {
+    transform: translateY(30px) rotateX(-10deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+  }
 }
 
 .hotel-edit-form h2 {
-  text-align: center;
+  color: #fff;
+  font-size: 24px;
   margin-bottom: 20px;
-  color: #333;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transform: translateZ(15px);
 }
 
 .form-row {
@@ -23,56 +40,123 @@
   justify-content: space-between;
   width: 100%;
   margin-bottom: 15px;
+  transform: translateZ(10px);
 }
 
 .form-group {
   flex: 1;
-  margin: 0 10px;
+  margin: 0 12px;
 }
 
-label {
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #555;
+.hotel-edit-form label {
+  display: block;
+  margin-bottom: 6px;
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-input, textarea, select {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
+.hotel-edit-form input,
+.hotel-edit-form textarea {
   width: 100%;
-  box-sizing: border-box;
-}
-
-input:focus, textarea:focus, select:focus {
-  border-color: #4CAF50;
-  outline: none;
-}
-
-.error {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
-}
-
-button {
-  background-color: #4CAF50;
-  color: white;
   padding: 12px;
+  background: linear-gradient(145deg, #414141, #2d2d2d);
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 12px;
+  color: #fff;
   font-size: 16px;
-  transition: background-color 0.3s;
+  margin-bottom: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    -8px -8px 15px rgba(255, 255, 255, 0.05),
+    8px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+.hotel-edit-form select {
   width: 100%;
-  margin-top: 12px;
+  padding: 12px;
+  background: linear-gradient(145deg, #414141, #2d2d2d);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    -8px -8px 15px rgba(255, 255, 255, 0.05),
+    8px 8px 15px rgba(0, 0, 0, 0.3);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 15px;
+  padding-right: 45px;
 }
 
-button:hover {
-  background-color: #45a049;
+.hotel-edit-form select option {
+  background-color: #2d2d2d;
+  color: #fff;
+  padding: 8px;
 }
 
-button:disabled {
-  background-color: #ccc;
+.hotel-edit-form input:focus,
+.hotel-edit-form textarea:focus,
+.hotel-edit-form select:focus {
+  outline: none;
+  background: linear-gradient(145deg, #575757, #414141);
+  box-shadow: 
+    -10px -10px 20px rgba(255, 255, 255, 0.07),
+    10px 10px 20px rgba(0, 0, 0, 0.4);
+  transform: translateZ(5px);
+}
+
+.hotel-edit-form .error {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.hotel-edit-form button {
+  background: linear-gradient(145deg, #414141, #2d2d2d);
+  color: #fff;
+  padding: 12px;
+  width: calc(100% - 24px);
+  margin: 15px 12px 0;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    -8px -8px 15px rgba(255, 255, 255, 0.05),
+    8px 8px 15px rgba(0, 0, 0, 0.3);
+  transform: translateZ(10px);
+  position: relative;
+}
+
+.hotel-edit-form button:hover {
+  background: linear-gradient(145deg, #575757, #414141);
+  transform: translateZ(15px) scale(1.02);
+  box-shadow: 
+    -10px -10px 20px rgba(255, 255, 255, 0.07),
+    10px 10px 20px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+}
+
+.hotel-edit-form button:active {
+  transform: translateZ(5px) scale(0.98);
+  box-shadow: 
+    -5px -5px 10px rgba(255, 255, 255, 0.05),
+    5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hotel-edit-form button:disabled {
+  background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+  cursor: not-allowed;
+  opacity: 0.7;
 }

@@ -1,172 +1,144 @@
 .role-management-form {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   width: 100%;
   max-width: 600px;
-  margin: 20px auto;
+  margin: 15px auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  background: rgba(43, 43, 43, 0.95);
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  animation: formEntry 0.8s ease-out;
+  box-sizing: border-box; /* Taşmaları önlemek için kutu modelini ayarla */
+}
+
+@keyframes formEntry {
+  from {
+    transform: translateY(30px) rotateX(-10deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+  }
 }
 
 .role-management-form h2 {
+  color: #fff;
+  font-size: 22px;
+  margin-bottom: 15px;
   text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-  font-size: 24px;
-  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .form-row {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.form-group {
-  flex: 1;
-  margin: 0 10px;
-}
-
-label {
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #555;
-  font-size: 16px;
-}
-
-input,
-select {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
+  flex-direction: column; /* Yatay taşmaları önlemek için dikey hizalama */
   width: 100%;
+  margin-bottom: 10px;
   box-sizing: border-box;
 }
 
-input:focus,
-select:focus {
-  border-color: #4CAF50;
-  outline: none;
+.form-group {
+  width: 100%; /* Taşmaları önlemek için genişlik tam olarak ayarlandı */
+  margin-bottom: 10px;
 }
 
-/* Dropdown öğesinin düzenlenmesi */
-/* Kullanıcı adını ve e-posta arasındaki çizgiyi ekleyelim */
-/* Custom Dropdown Stilleri */
-.custom-dropdown {
-  position: relative;
-  width: 100%;
-}
-
-.selected-item {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #fff;
-  font-size: 16px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.dropdown-options {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 100;
-}
-
-.dropdown-option {
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-  border-bottom: 1px solid #ddd;
-}
-
-.dropdown-option:hover {
-  background-color: #f0f0f0;
-}
-
-.user-option {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.user-name {
-  font-weight: bold;
-}
-
-.user-email {
-  color: #777;
-}
-
-/* Diğer stil düzenlemeleri */
-select {
+.role-management-form label {
   display: block;
+  margin-bottom: 6px;
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.role-management-form input,
+.role-management-form select {
   width: 100%;
+  max-width: 100%; /* Sağdan taşmayı önlemek için maksimum genişlik */
   padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #fff;
-  color: #333;
-}
-
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px;
+  background: linear-gradient(145deg, #414141, #2d2d2d);
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-  width: 100%;
-  margin-top: 15px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    -6px -6px 10px rgba(255, 255, 255, 0.05),
+    6px 6px 10px rgba(0, 0, 0, 0.3);
+  appearance: none;
+  box-sizing: border-box; /* Kutu modeli taşmaları engeller */
 }
 
-button:hover {
-  background-color: #45a049;
+.role-management-form select {
+  overflow: hidden; /* Dropdown taşmalarını önler */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  padding-right: 30px;
 }
 
-button:disabled {
-  background-color: #ccc;
+.role-management-form select option {
+  background-color: #000;
+  color: #fff;
+  padding: 6px;
 }
 
-.error {
-  color: red;
+.role-management-form input:focus,
+.role-management-form select:focus {
+  outline: none;
+  background: linear-gradient(145deg, #575757, #414141);
+  box-shadow: 
+    -8px -8px 15px rgba(255, 255, 255, 0.07),
+    8px 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.role-management-form .error {
+  color: #ff6b6b;
   font-size: 12px;
-  margin-top: 5px;
+  margin-top: 2px;
+  margin-bottom: 6px;
 }
 
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
+.role-management-form button {
+  background: linear-gradient(145deg, #414141, #2d2d2d);
+  color: #fff;
+  padding: 10px;
   width: 100%;
-  margin-top: 15px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    -6px -6px 10px rgba(255, 255, 255, 0.05),
+    6px 6px 10px rgba(0, 0, 0, 0.3);
 }
 
-button:hover {
-  background-color: #45a049;
+.role-management-form button:hover {
+  background: linear-gradient(145deg, #575757, #414141);
+  transform: scale(1.02);
+  box-shadow: 
+    -8px -8px 15px rgba(255, 255, 255, 0.07),
+    8px 8px 15px rgba(0, 0, 0, 0.4);
 }
 
-button:disabled {
-  background-color: #ccc;
+.role-management-form button:active {
+  transform: scale(0.98);
+  box-shadow: 
+    -4px -4px 8px rgba(255, 255, 255, 0.05),
+    4px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.role-management-form button:disabled {
+  background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+  cursor: not-allowed;
+  opacity: 0.7;
 }

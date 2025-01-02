@@ -1,0 +1,95 @@
+<div class="kitchen-management-container">
+  <!-- Dropdown Menü -->
+  <div class="dropdown-menu">
+    <select [(ngModel)]="selectedSection" (change)="onSectionChange()">
+      <option value="materials">Malzeme Yönetimi</option>
+      <option value="menu">Yemek Menüsü Yönetimi</option>
+      <option value="stock">Stok Tüketimi</option>
+    </select>
+  </div>
+
+  <!-- Form İçeriği -->
+  <div class="form-content">
+    <!-- Malzeme Yönetimi -->
+    <div *ngIf="selectedSection === 'materials'" class="form-section">
+      <h2>Malzeme Yönetimi</h2>
+      <div class="form-row">
+        <label for="materialName">Malzeme Adı</label>
+        <input type="text" id="materialName" [(ngModel)]="newMaterial.name" placeholder="Malzeme adını girin" />
+      </div>
+      <div class="form-row">
+        <label for="materialCode">Malzeme Kodu</label>
+        <input type="text" id="materialCode" [(ngModel)]="newMaterial.code" placeholder="Malzeme kodunu girin" />
+      </div>
+      <div class="form-row">
+        <label for="stockQuantity">Stok Miktarı</label>
+        <input type="number" id="stockQuantity" [(ngModel)]="newMaterial.stock" placeholder="Stok miktarını girin" />
+      </div>
+      <div class="form-row">
+        <label for="unit">Birim</label>
+        <select id="unit" [(ngModel)]="newMaterial.unit">
+          <option value="kg">Kilogram</option>
+          <option value="litre">Litre</option>
+          <option value="adet">Adet</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="expiryDate">Son Kullanma Tarihi</label>
+        <input type="date" id="expiryDate" [(ngModel)]="newMaterial.expiryDate" />
+      </div>
+      <button (click)="saveMaterial()">Malzeme Ekle/Güncelle</button>
+    </div>
+
+    <!-- Yemek Menüsü Yönetimi -->
+    <div *ngIf="selectedSection === 'menu'" class="form-section">
+      <h2>Yemek Menüsü Yönetimi</h2>
+      <div class="form-row">
+        <label for="dishName">Yemek Adı</label>
+        <input type="text" id="dishName" [(ngModel)]="newDish.name" placeholder="Yemek adını girin" />
+      </div>
+      <div class="form-row">
+        <label for="dishCategory">Yemek Kategorisi</label>
+        <select id="dishCategory" [(ngModel)]="newDish.category">
+          <option value="ana-yemek">Ana Yemek</option>
+          <option value="tatlı">Tatlı</option>
+          <option value="içecek">İçecek</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="materials">Kullanılan Malzemeler</label>
+        <table>
+          <thead>
+            <tr>
+              <th>Malzeme Adı</th>
+              <th>Gerekli Miktar</th>
+              <th>Birim</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let material of newDish.materials">
+              <td>{{ material.name }}</td>
+              <td>{{ material.quantity }}</td>
+              <td>{{ material.unit }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button (click)="addDish()">Yeni Yemek Ekle</button>
+    </div>
+
+    <div *ngIf="selectedSection === 'stock'" class="form-section">
+      <h2>Stok Tüketimi</h2>
+      <div class="form-row">
+        <label for="menuSelect">Menü Seçimi</label>
+        <select id="menuSelect" [(ngModel)]="newStockConsumption.menuId">
+          <option *ngFor="let menu of menus" [value]="menu.id">{{ menu.name }}</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="consumptionDate">Tüketim Tarihi</label>
+        <input type="date" id="consumptionDate" [(ngModel)]="newStockConsumption.consumptionDate" />
+      </div>
+      <button (click)="saveStockConsumption()">Stok Güncelle</button>
+    </div>
+  </div>
+</div>

@@ -7,10 +7,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed
+  background-attachment: fixed;
 }
-
-
 
 /* Header (Üst Menü) */
 header {
@@ -20,16 +18,14 @@ header {
   padding: 5px 50px;
   background-color: #ffffff5b; /* Beyaz transparan */
   backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
-  border-bottom: 2px solid #ccc;
   border: 2px solid #e0e0e0;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  position: sticky; /* Sabit üst menü */
+  position: sticky;
   top: 0;
   z-index: 10;
   max-width: 1000px;
-  margin: 0px auto;
-  margin-top: 0px;
+  margin: 0 auto;
 }
 
 /* Logo */
@@ -40,7 +36,7 @@ header h1 {
 
 /* Menü */
 nav ul {
-  display: flex; /* Desktop görünümde menü gözükecek */
+  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -76,83 +72,74 @@ nav ul li a:hover {
 /* Responsive Tasarım için - Telefon Ekranları */
 @media (max-width: 768px) {
   nav ul {
-      display: none; /* Yalnızca mobil ekranlarda menüyü gizle */
-      flex-direction: column;
-      background-color: rgba(255, 255, 255, 0.9); /* Beyaz transparan */
-      width: 100%;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      padding: 10px 0;
+    display: none;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
   }
 
   nav ul.show-menu {
-      display: flex; /* Mobil menü aktif olduğunda görünür */
+    display: flex;
   }
 
   nav ul li a {
-      padding: 15px;
-      text-align: center;
-      width: 100%;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
   }
 
-  /* Hamburger Menü Simgesi Görünür Yapılır */
   .mobile-menu-icon {
-      display: block;
+    display: block;
   }
 }
-
-
-
-
 
 /* Ana Bölüm - Arama ve Oteller */
 section {
   margin: 30px auto;
   padding: 50px;
-  background-color: #f4f4f4;
-  border-radius: 10px;
-  max-width: 800px;
-  background-color: #ffffff5b; /* Beyaz transparan */
-  backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
-  padding: 30px;
+  background-color: #ffffff5b;
+  backdrop-filter: blur(10px);
   border-radius: 20px;
   border: 2px solid #e0e0e0;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
   text-align: center;
 }
+
 .mat-form-field {
-  margin: 10px 0; /* Alanlar arası boşluk */
+  margin: 10px 0;
 }
 
 .mat-input-element {
-  font-weight: normal; /* Yazı kalınlığını normal yapabilirsiniz */
-  padding: 10px; /* Gerekirse burayı ayarlayın */
+  font-weight: normal;
+  padding: 10px;
 }
 
 /* Otel Arama Kartı */
 .otel-ara {
-  background-color: #ffffff5b; /* Beyaz transparan */
-  backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
-  padding: 5px 10px; /* İç boşluk azaltıldı */
+  background-color: #ffffff5b;
+  backdrop-filter: blur(10px);
+  padding: 5px 10px;
   border-radius: 20px;
   border: 2px solid #e0e0e0;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   max-width: 700px;
   margin: 40px auto;
   text-align: center;
 }
 
-
-/* Girdi Alanları */
 .otel-ara input {
   width: 45%;
   margin: 10px 1%;
   padding: 10px;
   border: 1px solid #fff;
   border-radius: 10px;
-  background-color: #ffffff5b; /* Beyaz transparan */
-  backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
+  background-color: #ffffff5b;
+  backdrop-filter: blur(10px);
   font-size: 16px;
   box-sizing: border-box;
 }
@@ -164,16 +151,13 @@ section {
 }
 
 .otel-ara .form-row input {
-  width: 31%; /* 3 input'u aynı hizada olacak şekilde */
+  width: 31%;
 }
 
-
-
-/* Filtre Butonu */
 .otel-ara button {
   width: 50%;
-  background-color: #ffffff5b; /* Beyaz transparan */
-  backdrop-filter: blur(10px); /* Bulanıklaştırma efekti */
+  background-color: #ffffff5b;
+  backdrop-filter: blur(10px);
   color: #000;
   padding: 10px;
   margin: 10px 1%;
@@ -185,22 +169,23 @@ section {
 }
 
 .otel-ara button:hover {
-  background-color: #ffffff; /* Beyaz transparan */
+  background-color: #ffffff;
 }
 
 /* Ekran Boyutuna Göre Düzenleme */
 @media (max-width: 768px) {
   header {
-      flex-direction: column;
+    flex-direction: column;
   }
 
-  .otel-ara input, .otel-ara button {
-      width: 100%;
+  .otel-ara input,
+  .otel-ara button {
+    width: 100%;
   }
 
   .otel-ara .form-row input {
-      width: 100%;
-      margin-bottom: 10px;
+    width: 100%;
+    margin-bottom: 10px;
   }
 }
 
@@ -209,27 +194,27 @@ section {
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Daha belirgin gölge */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
   width: 100%;
   margin-bottom: 20px;
 }
 
 .hotel-card:hover {
-  transform: scale(1.05); /* Hover efektiyle kartı büyütme */
+  transform: scale(1.05);
 }
 
 /* Otel Resmi */
 .hotel-image {
   width: 100%;
   height: 200px;
-  object-fit: cover; /* Resmin düzgün bir şekilde kesilmesini sağlar */
+  object-fit: cover;
 }
 
 /* Otel Kartı İçeriği */
 .hotel-details {
   padding: 15px;
-  background-color: #f9f9f9; /* Hafif gri arka plan */
+  background-color: #f9f9f9;
   border-top: 1px solid #ddd;
 }
 
@@ -247,7 +232,7 @@ section {
 
 .hotel-rating {
   font-size: 1.25rem;
-  color: #ffb400; /* Yıldız rengi */
+  color: #ffb400;
 }
 
 .star {
@@ -255,14 +240,13 @@ section {
 }
 
 .empty-star {
-  color: #ddd; /* Boş yıldızlar için gri renk */
+  color: #ddd;
 }
 
 /* Otel Listeleme */
 .hotel-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Kartlar responsive şekilde dizilir */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   margin-top: 20px;
 }
-

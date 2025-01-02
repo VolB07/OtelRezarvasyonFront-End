@@ -18,6 +18,12 @@
     <div class="menu-item" (click)="toggleReceptionForm()">
       Resepsiyon
     </div>
+    <div class="menu-item" (click)="toggleKitchenManagementForm()">
+      Mutfak
+    </div>
+    <div class="menu-item" (click)="toggleHousekeepingManagementForm()">
+      HK
+    </div>
   </div>
   <div class="content-area">
     <app-hotel-form *ngIf="isHotelFormVisible"></app-hotel-form>
@@ -25,5 +31,7 @@
     <app-room-management-form *ngIf="isRoomManagementFormVisible"></app-room-management-form>
     <app-role-management-form *ngIf="isRoleManagementFormVisible"></app-role-management-form>
     <app-reception-form *ngIf="isReceptionFormVisible"></app-reception-form>
+    <app-kitchen-management-form *ngIf="isKitchenManagementFormVisible"></app-kitchen-management-form>
+    <app-housekeeping-management *ngIf="isHousekeepingManagementFormVisible"></app-housekeeping-management >
   </div>
 </div>

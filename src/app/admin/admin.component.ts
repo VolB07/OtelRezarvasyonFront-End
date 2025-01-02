@@ -5,6 +5,8 @@ import { RoomManagementFormComponent } from "../room-management-form/room-manage
 import { CommonModule } from '@angular/common';
 import { RoleManagementFormComponent } from '../role-management-form/role-management-form.component';
 import { ReceptionFormComponent } from '../reception-form/reception-form.component';
+import { KitchenManagementFormComponent } from '../kitchen-management-form/kitchen-management-form.component';
+import { HousekeepingManagementComponent } from '../housekeeping-management/housekeeping-management.component';
 
 
 
@@ -12,7 +14,7 @@ import { ReceptionFormComponent } from '../reception-form/reception-form.compone
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  imports: [HotelFormComponent, EditHotelComponent, RoomManagementFormComponent,RoleManagementFormComponent, CommonModule, ReceptionFormComponent],
+  imports: [HotelFormComponent, EditHotelComponent, RoomManagementFormComponent,RoleManagementFormComponent, CommonModule, ReceptionFormComponent, KitchenManagementFormComponent, HousekeepingManagementComponent],
   standalone: true,
   styleUrls: ['./admin.component.css']
 })
@@ -22,6 +24,8 @@ export class AdminComponent {
   isRoomManagementFormVisible: boolean = false; // Oda yönetim formu için yeni bir değişken
   isRoleManagementFormVisible: boolean = false;
   isReceptionFormVisible: boolean = false;
+  isKitchenManagementFormVisible: boolean = false;
+  isHousekeepingManagementFormVisible: boolean = false;
 
   toggleHotelForm() {
     this.isHotelFormVisible = !this.isHotelFormVisible;
@@ -29,6 +33,8 @@ export class AdminComponent {
     this.isRoomManagementFormVisible = false; // Oda yönetim formunu kapat
     this.isRoleManagementFormVisible = false;
     this.isReceptionFormVisible = false;
+    this.isKitchenManagementFormVisible = false;
+    this.isHousekeepingManagementFormVisible = false;
     console.log("Otel form visibility toggled:", this.isHotelFormVisible);
   }
 
@@ -38,6 +44,8 @@ export class AdminComponent {
     this.isRoomManagementFormVisible = false; // Oda yönetim formunu kapat
     this.isRoleManagementFormVisible = false;
     this.isReceptionFormVisible = false;
+    this.isKitchenManagementFormVisible = false;
+    this.isHousekeepingManagementFormVisible = false;
     console.log("Otel düzenleme form visibility toggled:", this.isEditHotelFormVisible);
   }
 
@@ -47,6 +55,8 @@ export class AdminComponent {
     this.isEditHotelFormVisible = false; // Oda yönetim formunu açtığınızda düzenleme formunu kapat
     this.isRoleManagementFormVisible = false;
     this.isReceptionFormVisible = false;
+    this.isKitchenManagementFormVisible = false;
+    this.isHousekeepingManagementFormVisible = false;
     console.log("Oda yönetim form visibility toggled:", this.isRoomManagementFormVisible);
   }
 
@@ -56,6 +66,8 @@ export class AdminComponent {
     this.isEditHotelFormVisible = false;
     this.isRoomManagementFormVisible = false;
     this.isReceptionFormVisible = false;
+    this.isKitchenManagementFormVisible = false;
+    this.isHousekeepingManagementFormVisible = false;
   }
 
   toggleReceptionForm() {
@@ -64,6 +76,28 @@ export class AdminComponent {
     this.isEditHotelFormVisible = false;
     this.isRoomManagementFormVisible = false;
     this.isRoleManagementFormVisible = false;
+    this.isKitchenManagementFormVisible = false;
+    this.isHousekeepingManagementFormVisible = false;
     console.log('Reception form visibility toggled:', this.isReceptionFormVisible);
+  }
+
+  toggleKitchenManagementForm() {
+    this.isKitchenManagementFormVisible = !this.isKitchenManagementFormVisible;
+    this.isHotelFormVisible = false;
+    this.isEditHotelFormVisible = false;
+    this.isRoomManagementFormVisible = false;
+    this.isRoleManagementFormVisible = false;
+    this.isReceptionFormVisible = false;
+    this.isHousekeepingManagementFormVisible = false;
+  }
+
+  toggleHousekeepingManagementForm(){
+    this.isHousekeepingManagementFormVisible = !this.isHousekeepingManagementFormVisible;
+    this.isHotelFormVisible = false;
+    this.isEditHotelFormVisible = false;
+    this.isRoomManagementFormVisible = false;
+    this.isRoleManagementFormVisible = false;
+    this.isReceptionFormVisible = false;
+    this.isKitchenManagementFormVisible = false;
   }
 }
