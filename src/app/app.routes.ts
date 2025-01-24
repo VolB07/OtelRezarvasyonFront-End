@@ -10,6 +10,7 @@ import { ReservationPaymentComponent } from './reservation-payment/reservation-p
 import { ReservationsComponent } from './reservations/reservations.component';
 import { CommunicationComponent } from './communication/communication.component';
 import { RoleGuard } from './guards/role.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 export const routes: Routes = [  
     { path: '', component: HomeComponent },
@@ -24,7 +25,8 @@ export const routes: Routes = [
     { path: 'hotel/:id', component: HotelDetailComponent },
     { path: 'reservation-payment/:hotelId/:roomId', component: ReservationPaymentComponent },
     { path: 'reservations', component: ReservationsComponent },
-    { path: 'communication', component: CommunicationComponent }
+    { path: 'communication', component: CommunicationComponent },
+    { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

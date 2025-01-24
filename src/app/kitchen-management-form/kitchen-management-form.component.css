@@ -1,87 +1,197 @@
 .kitchen-management-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(43, 43, 43, 0.95); /* Koyu arka plan rengi */
+  transform-style: preserve-3d;
+  animation: formEntry 0.8s ease-out;
+  box-sizing: border-box; /* Box-sizing'i border-box yaparak padding ve border'ları genişlik dahilinde sayıyoruz */
+}
+
+@keyframes formEntry {
+  from {
+    transform: translateY(30px) rotateX(-10deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+  }
+}
+
+.form-content {
+  width: 100%;
+}
+
+.form-section {
+  margin-top: 20px;
+}
+
+h2 {
+  text-align: left;
+  margin-bottom: 20px;
+  color: #fff;
+  width: 100%;
+  font-size: 24px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transform: translateZ(15px);
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column; /* Her form elemanını dikey olarak sıralar */
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px; /* Her form elemanı arasında boşluk */
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+input,
+textarea,
+select {
+  padding: 14px 16px;
+  background: linear-gradient(145deg, #414141, #2d2d2d);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  width: 100%; /* Genişliği %100 yaparak dışarı taşmayı engeller */
+  margin-bottom: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.05), 8px 8px 15px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box; /* Padding ve border genişlik içinde hesaba katılır */
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  background: linear-gradient(145deg, #575757, #414141);
+  box-shadow: -10px -10px 20px rgba(255, 255, 255, 0.07), 10px 10px 20px rgba(0, 0, 0, 0.4);
+  transform: translateZ(5px);
+}
+
+button {
+  background: linear-gradient(145deg, #414141, #2d2d2d);
+  color: #fff;
+  padding: 12px;
+  width: 100%;
+  margin: 15px 0 0;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.05), 8px 8px 15px rgba(0, 0, 0, 0.3);
+  transform: translateZ(10px);
+  position: relative;
+  box-sizing: border-box; /* Padding ve border genişlik içinde hesaba katılır */
+}
+
+button:hover {
+  background: linear-gradient(145deg, #575757, #414141);
+  transform: translateZ(15px) scale(1.02);
+  box-shadow: -10px -10px 20px rgba(255, 255, 255, 0.07), 10px 10px 20px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+}
+
+button:active {
+  transform: translateZ(5px) scale(0.98);
+  box-shadow: -5px -5px 10px rgba(255, 255, 255, 0.05), 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:disabled {
+  background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .kitchen-management-container {
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+    margin: 15px;
   }
-  
-  .dropdown-menu {
-    align-self: flex-end; /* Sağ üst köşeye hizala */
-    margin-bottom: 20px;
-  }
-  
-  select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: #fff;
-    cursor: pointer;
-  }
-  
-  .form-content {
-    width: 100%;
-  }
-  
-  .form-section {
-    margin-top: 20px;
-  }
-  
-  h2 {
-    text-align: left;
-    margin-bottom: 20px;
-    color: #333;
-    width: 100%;
-  }
-  
+
   .form-row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 15px;
+    flex-direction: column;
+    gap: 15px;
   }
-  
+
   .form-group {
-    flex: 1;
-    margin: 0 10px;
-  }
-  
-  label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  input, textarea, select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
     width: 100%;
-    box-sizing: border-box;
   }
-  
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+
+  .kitchen-management-container button {
     width: 100%;
-    margin-top: 12px;
+    margin: 15px 0 0;
   }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
+}
+
+
+select {
+  padding: 14px 16px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  background: linear-gradient(145deg, #414141, #2d2d2d);
+  color: #fff;
+  margin-bottom: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.05), 8px 8px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 16px;
+  padding-right: 45px;
+  text-align: left;
+}
+
+select:hover {
+  background: linear-gradient(145deg, #4a4a4a, #353535);
+}
+
+select:focus {
+  outline: none;
+  background: linear-gradient(145deg, #575757, #414141);
+  box-shadow: -10px -10px 20px rgba(255, 255, 255, 0.07), 10px 10px 20px rgba(0, 0, 0, 0.4);
+  transform: translateZ(5px);
+}
+
+select option {
+  background-color: #2d2d2d !important;
+  color: #ffffff;
+  padding: 12px;
+  min-height: 40px;
+  line-height: 40px;
+  text-align: left;
+}
+
+select option:hover,
+select option:focus,
+select option:active,
+select option:checked {
+  background-color: #3d3d3d !important;
+  color: #ffffff;
+}

@@ -1,183 +1,210 @@
+/* Ana Container */
 .communication-container {
-    display: flex;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-.sidebar {
-    width: 200px;
-    padding: 20px;
-    border-right: 1px solid #ddd;
-}
-
-.back-link {
-    display: block;
-    color: #0073e6;
-    text-decoration: none;
-    margin-bottom: 20px;
-}
-
-.menu {
-    list-style-type: none;
-    padding: 0;
-}
-
-.menu li {
-    margin-bottom: 15px;
-}
-
-.links {
-    color: #666;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.content {
-    flex-grow: 1;
-    padding: 40px;
-}
-
-.content h2 {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.contact-form {
-    margin-top: 10px;
-    /* Başlık ile form arasındaki boşluk */
-}
-
-.form-group {
-    margin-bottom: 15px;
-    /* Alanlar arasındaki boşluk */
-    text-align: left;
-    /* Sola hizalama */
-}
-
-.form-group label {
-    display: block;
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 50%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.form-group textarea {
-    resize: vertical;
-}
-
-.support-requests-table {
-    width: 52%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.support-requests-table th,
-.support-requests-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-.support-requests-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
+  display: flex;
+  font-family: Arial, sans-serif;
+  color: #333;
 }
 
 /* Hamburger Menü */
 .hamburger-menu {
-    display: none;
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 25px;
-    margin: 10px;
-  }
-  
-  .hamburger-menu .bar {
-    height: 4px;
-    width: 100%;
-    background-color: #333;
-    border-radius: 2px;
-  }
-  
-  /* Kapatma ikonu */
-  .close-menu {
-    display: none;
-    cursor: pointer;
-    font-size: 30px;
-    color: #333;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-  
-  /* Yan Menü */
-  .sidebar {
-    padding: 20px;
-    border-right: 1px solid #ddd;
-    width: 200px; /* Sabit genişlik */
-  }
-  
-  /* Sidebar'ı varsayılan olarak açık tutuyoruz */
-  .sidebar.hidden {
-    display: none; /* Yan menüyü mobilde gizle */
-  }
-  
-  /* Sidebar'ı açma ve kapama */
-  .sidebar.active {
-    transform: translateX(0);
-  }
-  
-  /* Responsive Tasarım */
-  @media (max-width: 768px) {
-    .hamburger-menu {
-      display: flex;
-    }
-  
-    .sidebar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      background: #fff;
-      z-index: 1000;
-      transform: translateX(-100%);
-      display: block; /* Mobilde görünür yapalım */
-    }
-  
-    .sidebar.active {
-      transform: translateX(0); /* Menüyü açma */
-    }
-  
-    .close-menu {
-      display: block; /* Mobilde kapatma ikonu görünür */
-    }
-  }
-  
-  
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 2000;
+}
+
+.bar {
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  padding: 20px;
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.back-link {
+  display: block;
+  color: #0073e6;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu li {
+  margin-bottom: 15px;
+}
+
+.links {
+  color: #666;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* Content Area */
+.content {
+  flex-grow: 1;
+  padding: 40px;
+  margin-left: 200px;
+}
+
+.content h2 {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Form Styles */
+.contact-form {
+  margin-top: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 50%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+/* Table Styles */
+.support-requests-table {
+  width: 52%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.support-requests-table th,
+.support-requests-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.support-requests-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+/* Button Styles */
 .submit-button {
-    width: 52%;
-    padding: 10px 20px;
-    font-size: 14px;
-    color: #fff;
-    background-color: #0073e6;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 20px;
+  width: 52%;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #0073e6;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .submit-button:hover {
-    background-color: #005bb5;
+  background-color: #005bb5;
+}
+
+/* Hamburger Animation States */
+.hamburger-menu.active .bar:nth-child(1) {
+  transform: translateY(10.5px) rotate(45deg);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+  transform: translateY(-10.5px) rotate(-45deg);
+}
+
+.hamburger-menu:hover .bar {
+  background-color: #666;
+}
+
+.hamburger-menu:active .bar {
+  background-color: #999;
+}
+
+/* Overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .content {
+    margin-left: 0;
+    padding-top: 80px;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  }
+
+  .overlay.active {
+    display: block;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .submit-button,
+  .support-requests-table {
+    width: 100%;
+  }
 }

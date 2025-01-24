@@ -3,13 +3,62 @@
 <head>
   <meta charset="utf-8">
   <title>Rezervasyon.com</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const originalTitle = "Rezervasyon.com";
+      const awayTitle = "😢 Bizi unutmayın!";
+
+      // Sayfa odağını kaybettiğinde (başka bir sekmeye geçildiğinde)
+      window.addEventListener("blur", () => {
+        document.title = awayTitle;
+      });
+
+      // Sayfa odağına dönüldüğünde (bu sekmeye geri gelindiğinde)
+      window.addEventListener("focus", () => {
+        document.title = originalTitle;
+      });
+    });
+  </script>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- SEO ve Cache Kontrol -->
+  <meta name="description" content="Tatil planlarınız için en uygun fiyatlı otel
+  rezervasyonlarını yapabileceğiniz platform. Kolay kullanım ve güvenilir hizmet.">
+  <meta name="keywords" content="otel, rezervasyon, seyahat, tatil">
+  <meta name="author" content="Volkan Bülbül">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Preconnect ve Preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap">
+  <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Kritik CSS -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+
+  <!-- Geri kalan CSS -->
+  <link rel="preload" href="styles.css" as="style" onload="this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="styles.css"></noscript>
 </head>
 <body class="mat-typography">
   <app-root></app-root>
+
+  <!-- Service Worker -->
+
 </body>
 </html>

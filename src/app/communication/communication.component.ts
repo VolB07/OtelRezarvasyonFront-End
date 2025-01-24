@@ -102,9 +102,7 @@ export class CommunicationComponent {
 
   toggleSidebar(): void {
     this.isSidebarVisible = !this.isSidebarVisible;
-  }
-
-  closeSidebar(): void {
-    this.isSidebarVisible = false;
+    const menu = document.querySelector('.hamburger-menu');
+    menu?.classList.toggle('active');
   }
 }

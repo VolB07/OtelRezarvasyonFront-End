@@ -3,8 +3,9 @@
 
   <div class="form-row">
     <div class="form-group">
+      <label for="hotelSelect">Düzenlenecek Oteli Seçiniz:</label>
       <select id="hotelSelect" formControlName="hotelId" (change)="onHotelSelect($event)" required>
-        <option value="" disabled selected>Seçiniz</option>
+        <option value="" disabled selected> Otel Seçiniz</option>
         <option *ngFor="let hotel of hotels" [value]="hotel.id">{{ hotel.name }}</option>
       </select> 
     </div>     
@@ -32,7 +33,7 @@
     <div class="form-group">
       <label for="star_rating">Yıldız Puanı:</label>
       <select id="star_rating" formControlName="star_rating" required>
-        <option value="" disabled selected>Seçiniz</option>
+        <option value="" disabled selected>Yıldız Seçiniz</option>
         <option *ngFor="let star of [1, 2, 3, 4, 5]" [value]="star">{{ star }}</option>
       </select>
       <div *ngIf="editHotelForm.get('star_rating')?.invalid && editHotelForm.get('star_rating')?.touched" class="error">

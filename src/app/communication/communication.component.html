@@ -1,13 +1,12 @@
 <div class="communication-container">
   <!-- Hamburger Menü -->
-  <div class="hamburger-menu" (click)="toggleSidebar()">
+  <div class="hamburger-menu" [class.active]="isSidebarVisible" (click)="toggleSidebar()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
 
-  <!-- Kapatma İkonu -->
-  <div class="close-menu" (click)="closeSidebar()">×</div>
+
 
   <!-- Yan Menü -->
   <div class="sidebar" [class.active]="isSidebarVisible">

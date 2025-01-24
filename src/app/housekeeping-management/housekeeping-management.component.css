@@ -1,103 +1,190 @@
 .housekeeping-management-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-    margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  margin: 15px auto;
+  padding: 25px;
+  background: rgba(43, 43, 43, 0.95);
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  animation: formEntry 0.8s ease-out;
+}
+
+@keyframes formEntry {
+  from {
+    transform: translateY(30px) rotateX(-10deg);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) rotateX(0);
+    opacity: 1;
+  }
+}
+
+.housekeeping-management-container h2 {
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: left;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transform: translateZ(15px);
+}
+
+.housekeeping-management-container .form-row {
+  display: flex;
+  flex-direction: column; /* Satırları dikey hizalar */
+  width: 100%;
+  gap: 20px;
+  margin-bottom: 15px;
+  transform: translateZ(10px);
+}
+
+.housekeeping-management-container .form-group {
+  display: flex;
+  flex-direction: column; /* Etiket üstte, kutular altta */
+  align-items: flex-start; /* Kutular ve etiketler sola hizalanır */
+  width: 100%; /* Genişliği tam tutar */
+}
+
+.housekeeping-management-container label {
+  display: block;
+  margin-bottom: 8px; /* Etiket ile kutu arasındaki boşluk */
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  text-align: left;
+}
+
+.housekeeping-management-container input,
+.housekeeping-management-container textarea,
+.housekeeping-management-container select {
+  width: 100%;
+  padding: 14px 16px;
+  background: linear-gradient(145deg, #414141, #2d2d2d);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 15px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    -8px -8px 15px rgba(255, 255, 255, 0.05),
+    8px 8px 15px rgba(0, 0, 0, 0.3);
+  text-align: left; /* Yazıları sola hizalar */
+}
+
+.housekeeping-management-container select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 16px;
+  padding-right: 45px;
+}
+
+.housekeeping-management-container select option {
+  background-color: #2d2d2d !important;
+  color: #ffffff;
+  padding: 12px;
+  min-height: 40px;
+  line-height: 40px;
+  text-align: left;
+}
+
+.housekeeping-management-container input:focus,
+.housekeeping-management-container textarea:focus,
+.housekeeping-management-container select:focus {
+  outline: none;
+  background: linear-gradient(145deg, #575757, #414141);
+  box-shadow: 
+    -10px -10px 20px rgba(255, 255, 255, 0.07),
+    10px 10px 20px rgba(0, 0, 0, 0.4);
+  transform: translateZ(5px);
+}
+
+.housekeeping-management-container select:hover {
+  background: linear-gradient(145deg, #4a4a4a, #353535);
+}
+
+.housekeeping-management-container .error {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  width: 100%;
+}
+
+.housekeeping-management-container button {
+  background: linear-gradient(145deg, #414141, #2d2d2d);
+  color: #fff;
+  padding: 12px;
+  width: 100%;
+  margin: 15px 0 0;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    -8px -8px 15px rgba(255, 255, 255, 0.05),
+    8px 8px 15px rgba(0, 0, 0, 0.3);
+  transform: translateZ(10px);
+}
+
+.housekeeping-management-container button:hover {
+  background: linear-gradient(145deg, #575757, #414141);
+  transform: translateZ(15px) scale(1.02);
+  box-shadow: 
+    -10px -10px 20px rgba(255, 255, 255, 0.07),
+    10px 10px 20px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+}
+
+.housekeeping-management-container button:active {
+  transform: translateZ(5px) scale(0.98);
+  box-shadow: 
+    -5px -5px 10px rgba(255, 255, 255, 0.05),
+    5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.housekeeping-management-container button:disabled {
+  background: linear-gradient(145deg, #2d2d2d, #1a1a1a);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+  .housekeeping-management-container {
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+    margin: 15px;
   }
-  
-  .dropdown-menu {
-    align-self: flex-end;
-    margin-bottom: 20px;
+
+  .housekeeping-management-container .form-row {
+    flex-direction: column;
+    gap: 15px;
   }
-  
-  select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: #fff;
-    cursor: pointer;
-  }
-  
-  .form-content {
+
+  .housekeeping-management-container .form-group {
     width: 100%;
   }
-  
-  .form-section {
-    margin-top: 20px;
-  }
-  
-  h2 {
-    text-align: left;
-    margin-bottom: 20px;
-    color: #333;
+
+  .housekeeping-management-container select {
     width: 100%;
+    min-width: 100%;
   }
-  
-  .form-row {
-    display: flex;
-    justify-content: space-between;
+
+  .housekeeping-management-container button {
     width: 100%;
-    margin-bottom: 15px;
+    margin: 15px 0 0;
   }
-  
-  label {
-    flex: 1;
-    margin-right: 10px;
-    font-weight: bold;
-    color: #555;
-  }
-  
-  input,
-  select {
-    flex: 2;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  
-  button {
-    background-color: #4caf50;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    width: 100%;
-    margin-top: 12px;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  table th,
-  table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
+}
